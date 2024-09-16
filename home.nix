@@ -26,6 +26,7 @@
     
     pkgs.tmux
     pkgs.lua
+    pkgs.nwg-look
 
     # ---------------------------
     pkgs-unstable.microsoft-edge
