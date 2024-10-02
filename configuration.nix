@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, pkgs-b76567c281, ... }:
 
 {
   imports =
@@ -16,9 +16,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   ## Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_10;
   boot.initrd.kernelModules = [ 
     "amdgpu" 
+    "nvidia"
+    "nvidia_modeset" 
+    "nvidia_uvm" 
+    "nvidia_drm"
+  ];
+  boot.kernelParams = [
+    "drm.edid_firmware=eDP-1:edid/edid.bin"
+    "video=eDP-1:e"
+    "nvidia_drm.fbdev=1"
   ];
  
   networking.hostName = "froggo"; # Define your hostname.
@@ -48,37 +57,26 @@
     LC_TIME = "en_US.UTF-8";
   };
 
- 
-  # Enable the Gnome Desktop Environment.
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-    xkb.variant = "";
-
-    desktopManager = {
-      gnome.enable = true;
-      runXdgAutostartIfNone = true;
-    };
-    
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-      
-    };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-gtk
+      fcitx5-unikey
+    ];
   };
-
-  # services.displayManager.sddm.enable = true;
 
   fonts = {
     packages = with pkgs; [
+      inter
       font-awesome
       cascadia-code
+      roboto
       (nerdfonts.override { 
 	 fonts = [ 
 	   "FiraCode" 
 	   "JetBrainsMono"
+	   "Overpass"
 	 ]; 
        })
     ];
@@ -86,13 +84,29 @@
       cache32Bit = true;
       allowBitmaps = true;
       useEmbeddedBitmaps = true;
+      subpixel.rgba = "rgb";
+      hinting.style = "full";
       defaultFonts = {
-	serif = [ "JetBrainsMono" ];
-	sansSerif = [ "JetBrainsMono" ];
+	serif = ["Inter"];
+	sansSerif = ["Roboto"];
 	monospace = [ "JetBrainsMono" ];
       };
     };
   };
+
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+    xkb.variant = "";
+
+    # desktopManager.gnome.enable = true;
+  };
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  # services.hardware.display.outputs."eDP-1".edid = "edid.bin";
+  # services.hardware.display.outputs."eDP-1".mode = "e";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -136,8 +150,11 @@
     lshw
     git
     gcc
+    dig
+    mesa
   ];
 
+  programs.firefox.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.zsh = {
@@ -152,50 +169,63 @@
     };  	
   };
 
+  programs.hyprland = {
+    enable = true;
+    package = pkgs-unstable.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
+  };
+
+
+  # Bluetooth --------------------------------------------------
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
+  # Graphics ---------------------------------------------------
   # Enable OpenGL
   hardware.opengl = {
+    package = pkgs-unstable.mesa.drivers;
     enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [
+    "amdgpu" 
+    "nvidia"
+  ];
 
   hardware.nvidia = {
-
-    # Modesetting is required.
     modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-    # of just the bare essentials.
-    powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
-
-    # Enable the Nvidia settings menu,
-        # accessible via `nvidia-settings`.
     nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = pkgs-unstable.linuxPackages_latest.nvidiaPackages.production;
+    forceFullCompositionPipeline = true;
+    # package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "555.58.02";
+      sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+      sha256_aarch64 = "sha256-wb20isMrRg8PeQBU96lWJzBMkjfySAUaqt4EgZnhyF8=";
+      openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
+      settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
+      persistencedSha256 = "sha256-a1D7ZZmcKFWfPjjH1REqPM5j/YLWKnbkP9qfRyIyxAw=";
+    };
   };
-  
+
   hardware.nvidia.prime = {
     amdgpuBusId = "PCI:6:0:0";
     nvidiaBusId = "PCI:1:0:0";
   };
+
+  hardware.firmware = [
+    (pkgs.runCommandNoCC "firmware-custom-edid" {compressFirmware = false;} ''
+      mkdir -p $out/lib/firmware/edid/
+      cp "${./edid/edid.bin}" $out/lib/firmware/edid/edid.bin
+    '')
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -207,8 +237,9 @@
 
   # List services that you want to enable:
 
+  services.resolved.enable = true;
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
