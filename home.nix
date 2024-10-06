@@ -58,7 +58,7 @@
 
     # wm/de related
     pkgs.fuzzel
-    pkgs.waybar
+    pkgs-unstable.waybar
     pkgs.hyprpaper
     pkgs.hyprlock
     pkgs-unstable.hyprcursor
@@ -70,8 +70,8 @@
     # ---------------------------
     (pkgs-unstable.microsoft-edge.override {
       commandLineArgs = [
-	"--ozone-platform=wayland"
-	"--enable-wayland-ime"
+        "--ozone-platform=wayland"
+        "--enable-wayland-ime"
       ];
     })
     pkgs-unstable.spotify
@@ -97,32 +97,19 @@
   #   # portalPackage = pkgs.xdg-desktop-portal-hyprland;
   # };
 
-  # programs.nixvim = {
-  #   enable = true;
-
-  #   colorschemes.catppuccin.enable = true;
-  #   plugins.lualine.enable = true;
-  # };
-
   home.file.".config/waybar/" = {
     source = ./waybar;
     recursive = false;
   };
 
   home.file.".config/hypr/".source = ./hypr;
-  home.file.".config/fuzzel".source = ./fuzzel;
-  # home.file.".config/waybar/".source = ./waybar;
+  home.file.".config/fuzzel/".source = ./fuzzel;
+  home.file.".config/nvim/" = {
+    source = ./nvim;
+    recursive = true;
+  };
 
-  # This value determines the home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update home Manager without changing this value. See
-  # the home Manager release notes for a list of state version
-  # changes in each release.
   home.stateVersion = "24.05";
 
-  # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

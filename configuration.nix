@@ -11,6 +11,7 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Boot config --------------------------------------------------
   ## Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -19,31 +20,31 @@
   boot.kernelPackages = pkgs.linuxPackages_6_10;
   boot.initrd.kernelModules = [ 
     "amdgpu" 
-    "nvidia"
-    "nvidia_modeset" 
-    "nvidia_uvm" 
-    "nvidia_drm"
+    # "nvidia"
+    # "nvidia_modeset" 
+    # "nvidia_uvm" 
+    # "nvidia_drm"
   ];
   boot.kernelParams = [
-    "drm.edid_firmware=eDP-1:edid/edid.bin"
+    "drm.edid_firmware=edid/edid.bin"
     "video=eDP-1:e"
-    "nvidia_drm.fbdev=1"
+    # "nvidia_drm.fbdev=1"
   ];
- 
+
+  boot.kernelPatches = [
+    {
+      name = "edid-loader-fix-config";
+      patch = null;
+      extraConfig = ''
+        FW_LOADER y
+      '';
+    }
+  ];
+
   networking.hostName = "froggo"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -71,25 +72,24 @@
       inter
       font-awesome
       cascadia-code
-      roboto
       (nerdfonts.override { 
-	 fonts = [ 
-	   "FiraCode" 
-	   "JetBrainsMono"
-	   "Overpass"
-	 ]; 
-       })
+        fonts = [ 
+          "FiraCode" 
+          "JetBrainsMono"
+          "Overpass"
+        ]; 
+      })
     ];
     fontconfig = {
       cache32Bit = true;
       allowBitmaps = true;
       useEmbeddedBitmaps = true;
       subpixel.rgba = "rgb";
-      hinting.style = "full";
+      hinting.style = "medium";
       defaultFonts = {
-	serif = ["Inter"];
-	sansSerif = ["Roboto"];
-	monospace = [ "JetBrainsMono" ];
+        serif = ["NotoSerif"];
+        sansSerif = ["Inter"];
+        monospace = [ "JetBrainsMono" ];
       };
     };
   };
@@ -98,15 +98,17 @@
     enable = true;
     xkb.layout = "us";
     xkb.variant = "";
-
-    # desktopManager.gnome.enable = true;
   };
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-
-  # services.hardware.display.outputs."eDP-1".edid = "edid.bin";
-  # services.hardware.display.outputs."eDP-1".mode = "e";
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland = {
+        enable = true;
+      };
+      package = pkgs.sddm;
+    };
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -120,11 +122,11 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    # jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    # media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -151,7 +153,6 @@
     git
     gcc
     dig
-    mesa
   ];
 
   programs.firefox.enable = true;
@@ -185,8 +186,8 @@
   # Graphics ---------------------------------------------------
   # Enable OpenGL
   hardware.opengl = {
-    package = pkgs-unstable.mesa.drivers;
     enable = true;
+    package = pkgs-unstable.mesa.drivers;
     driSupport = true;
     driSupport32Bit = true;
   };

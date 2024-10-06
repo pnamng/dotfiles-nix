@@ -1,7 +1,7 @@
-@import "themes/nord.css";
+@import "./nord.css";
 
 * {
-  font-family: "Inter", FontAwesome6Free;
+  font-family: "Overpass Nerd Font", FontAwesome6Free;
   font-size: 14px;
 }
 
