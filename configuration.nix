@@ -28,7 +28,7 @@
   boot.kernelParams = [
     "drm.edid_firmware=edid/edid.bin"
     "video=eDP-1:e"
-    # "nvidia_drm.fbdev=1"
+    "nvidia_drm.fbdev=1"
   ];
 
   boot.kernelPatches = [
@@ -104,9 +104,8 @@
     sddm = {
       enable = true;
       wayland = {
-        enable = true;
+        enable = false;
       };
-      package = pkgs.sddm;
     };
   };
 
@@ -153,6 +152,7 @@
     git
     gcc
     dig
+    gnupg
   ];
 
   programs.firefox.enable = true;

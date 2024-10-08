@@ -60,7 +60,7 @@
     pkgs.fuzzel
     pkgs-unstable.waybar
     pkgs.hyprpaper
-    pkgs.hyprlock
+    pkgs-unstable.hyprlock
     pkgs-unstable.hyprcursor
     pkgs.hypridle
     
