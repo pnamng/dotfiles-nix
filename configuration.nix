@@ -20,15 +20,16 @@
   boot.kernelPackages = pkgs.linuxPackages_6_10;
   boot.initrd.kernelModules = [ 
     "amdgpu" 
-    # "nvidia"
-    # "nvidia_modeset" 
-    # "nvidia_uvm" 
-    # "nvidia_drm"
+    "nvidia"
+    "nvidia_modeset" 
+    "nvidia_uvm" 
+    "nvidia_drm"
   ];
   boot.kernelParams = [
-    "drm.edid_firmware=edid/edid.bin"
+    "drm.edid_firmware=eDP-1:edid/edid.bin"
     "video=eDP-1:e"
     "nvidia_drm.fbdev=1"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
   boot.kernelPatches = [
@@ -100,14 +101,24 @@
     xkb.variant = "";
   };
 
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland = {
-        enable = false;
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "hyprland";
+        user = "froggo";
       };
+      default_session = initial_session;
     };
   };
+  # services.displayManager = {
+  #   sddm = {
+  #     enable = true;
+  #     wayland = {
+  #       enable = false;
+  #     };
+  #   };
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -135,7 +146,7 @@
   users.users.froggo = {
     isNormalUser = true;
     description = "froggo";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "vboxusers" ];
     shell = pkgs.zsh;
     packages = with pkgs; [];
   };
@@ -227,6 +238,10 @@
       cp "${./edid/edid.bin}" $out/lib/firmware/edid/edid.bin
     '')
   ];
+
+  # ---------------------------------------------------------------------------
+  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtenstionPack = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
