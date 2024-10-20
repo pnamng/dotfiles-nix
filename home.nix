@@ -1,9 +1,6 @@
 { config, pkgs, pkgs-unstable, lib, ... }:
 
 {
-  # imports = [
-  #   inputs.nixvim.homeManagerModules.nixvim
-  # ];
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
@@ -91,12 +88,6 @@
   };
 
 
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   package = pkgs-unstable.hyprland;
-  #   # portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  # };
-
   home.file.".config/waybar/" = {
     source = ./waybar;
     recursive = false;
@@ -104,6 +95,7 @@
 
   home.file.".config/hypr/".source = ./hypr;
   home.file.".config/fuzzel/".source = ./fuzzel;
+#   home.file.".tmux.conf".source = ./.tmux.conf;
   home.file.".config/nvim/" = {
     source = ./nvim;
     recursive = true;

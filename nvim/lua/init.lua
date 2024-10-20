@@ -117,19 +117,6 @@ require('lualine').setup({
   }
 })
 
--- local highlight = {
---     "CursorColumn",
---     "Whitespace",
--- }
--- require("ibl").setup {
---     indent = { highlight = highlight, char = "" },
---     whitespace = {
---         highlight = highlight,
---         remove_blankline_trail = false,
---     },
---     scope = { enabled = false },
--- }
-
 -- indent-blankline config
 local highlight = {
   "RainbowRed",
@@ -248,12 +235,12 @@ require("bufferline").setup{
         separator 	= true
       }
     },
-    highlights = {
-      fill = {
-        fg = '#24283b',
-        bg = '#24283b'
-      },
-    }
+    -- highlights = {
+    --   fill = {
+    --     fg = '#24283b',
+    --     bg = '#24283b'
+    --   },
+    -- }
   }	 
 }
 
@@ -472,24 +459,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Set contrast.
--- This configuration option should be placed before `colorscheme everforest`.
--- Available values: 'hard', 'medium'(default), 'soft'
--- vim.g.everforest_background = 'medium'
-
--- For better performance
--- vim.g.everforest_better_performance = 1
-
--- For transparency
-
--- vim.g.everforest_transparent_background = 1
-
--- after color scheme
--- vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
--- vim.cmd[[hi VertSplit ctermbg=NONE guibg=NONE]]
-
 vim.cmd("colorscheme kanagawa")
-
 -- vim.cmd[[hi! VertSplit guifg=black guibg=black ctermfg=black ctermbg=black]]
 vim.cmd[[hi! LineNr guifg=none guibg=none ctermfg=none ctermbg=none]]
 vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]

@@ -28,9 +28,9 @@ require('telescope').setup{
 -- lualine config
 require('lualine').setup({
   options = {
-    theme = 'nord',
-  --   -- component_separators = { left = '', right = ''},
-  --   -- section_separators = { left = '', right = ''},
+    theme = 'gruvbox',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
   }
 })
 
@@ -132,42 +132,6 @@ require'nvim-treesitter.configs'.setup {
         },
       },
     },
-  },
-}
-
-require("bufferline").setup{
-  options = {
-    diagnostics = "nvim_lsp",
-    offsets = {
-      {
-        filetype 		= "NvimTree",
-        text 				= "File Explorer",
-        text_align	= "left",
-        highlight		= "Directory",
-        separator 	= false,
-        separator_style = "thick"
-      }
-    },
-    indicator = {
-      icon = " ",
-      style = "icon"
-    },
-    color_icons = true,
-    themable = true
-  },
-  highlights = {
-  --   background = {
-  --     fg = '#ffffff',
-  --     bg = '#ffffff',
-  --   },
-  --    fill = {
-  --      fg = 'gray',
-  --      bg = 'gray',
-  --    },
-  --   tab = {
-  --     fg = '#ffffff',
-  --     bg = '#ffffff',
-  --   },
   },
 }
 
@@ -394,24 +358,32 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- Default options:
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
+})
 
--- everforest config
--- vim.g.everforest_background = "hard"
--- vim.g.everforest_transparent_background = true 
-
--- nord config
-vim.g.nord_disable_background = true
-vim.g.nord_contrast = true
-vim.cmd("colorscheme nord")
-
--- vim.cmd[[hi! VertSplit guifg=white guibg=white ctermfg=white ctermbg=white]]
--- vim.cmd[[hi! WinSeparator guifg=white ctermfg=white]]
- -- local pywal = require('pywal')
- -- 
- -- pywal.setup()
--- vim.cmd[[hi! Normal guifg=none guibg=none ctermfg=none ctermbg=none]]
---
-
+vim.cmd("colorscheme gruvbox")
+vim.cmd[[hi! VertSplit guifg=white guibg=white ctermfg=white ctermbg=white]]
 vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]
--- Line number colors
--- vim.cmd[[hi! LineNr guifg=none guibg=none ctermfg=none ctermbg=none]]

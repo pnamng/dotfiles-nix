@@ -37,9 +37,6 @@ return require("lazy").setup({
     'lukas-reineke/indent-blankline.nvim'
   },
   {
-    'akinsho/bufferline.nvim'
-  },
-  {
     'github/copilot.vim'
   },
   {
@@ -68,17 +65,8 @@ return require("lazy").setup({
   {'hrsh7th/cmp-path'},
   {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/nvim-cmp'},
-  {
-    'AlphaTechnolog/pywal.nvim'
-  },
-  {
-    'elkowar/yuck.vim'
-  },
-  {
-    'ayu-theme/ayu-vim'
-  },
-  {
-    'shaunsingh/nord.nvim'
+  { 
+    'ellisonleao/gruvbox.nvim'
   }
 })
 
