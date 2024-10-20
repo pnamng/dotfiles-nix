@@ -1,4 +1,4 @@
-@import "./nord.css";
+@import "./gruvbox.css";
 
 * {
   font-family: "Overpass Nerd Font", FontAwesome6Free;
@@ -41,6 +41,7 @@ window#waybar {
 #network {
   background: @bg0;
   padding: 0 4px;
+  border: 1px solid @fg;
 }
 
 #battery {

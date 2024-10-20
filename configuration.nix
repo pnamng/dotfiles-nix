@@ -32,15 +32,15 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
-  boot.kernelPatches = [
-    {
-      name = "edid-loader-fix-config";
-      patch = null;
-      extraConfig = ''
-        FW_LOADER y
-      '';
-    }
-  ];
+  # boot.kernelPatches = [
+  #   {
+  #     name = "edid-loader-fix-config";
+  #     patch = null;
+  #     extraConfig = ''
+  #       FW_LOADER y
+  #     '';
+  #   }
+  # ];
 
   networking.hostName = "froggo"; # Define your hostname.
   networking.networkmanager.enable = true;

@@ -93,9 +93,10 @@
     recursive = false;
   };
 
-  home.file.".config/hypr/".source = ./hypr;
+  home.file.".tmux.conf".source = ./.tmux.conf;
+  # home.file.".config/hypr/".source = ./hypr;
   home.file.".config/fuzzel/".source = ./fuzzel;
-#   home.file.".tmux.conf".source = ./.tmux.conf;
+  home.file.".config/alacritty/".source = ./alacritty;
   home.file.".config/nvim/" = {
     source = ./nvim;
     recursive = true;
