@@ -63,6 +63,7 @@
     
     pkgs.tmux
     pkgs.lua
+    pkgs.lazygit
 
     # ---------------------------
     (pkgs-unstable.microsoft-edge.override {

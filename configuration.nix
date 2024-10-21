@@ -32,15 +32,15 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
-  # boot.kernelPatches = [
-  #   {
-  #     name = "edid-loader-fix-config";
-  #     patch = null;
-  #     extraConfig = ''
-  #       FW_LOADER y
-  #     '';
-  #   }
-  # ];
+  boot.kernelPatches = [
+    {
+      name = "edid-loader-fix-config";
+      patch = null;
+      extraConfig = ''
+        FW_LOADER y
+      '';
+    }
+  ];
 
   networking.hostName = "froggo"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -105,7 +105,7 @@
     enable = true;
     settings = rec {
       initial_session = {
-        command = "hyprland";
+        command = "Hyprland";
         user = "froggo";
       };
       default_session = initial_session;
@@ -164,6 +164,7 @@
     gcc
     dig
     gnupg
+    nixd
   ];
 
   programs.firefox.enable = true;
