@@ -384,6 +384,17 @@ require("gruvbox").setup({
   transparent_mode = false,
 })
 
+local nvim_lsp = require("lspconfig")
+nvim_lsp.nixd.setup({
+  settings = {
+    nixd = {
+      formatting = {
+        command = { "nixfmt" },
+      },
+    },
+  },
+})
+
 vim.cmd("colorscheme gruvbox")
 vim.cmd[[hi! VertSplit guifg=white guibg=white ctermfg=white ctermbg=white]]
 vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]
