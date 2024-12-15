@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, pkgs-b76567c281, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -16,10 +16,11 @@
   ## Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
   ## Kernel
-  boot.kernelPackages = pkgs.linuxPackages_6_10;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [ 
-    "amdgpu" 
+    "amdgpu"
     "nvidia"
     "nvidia_modeset" 
     "nvidia_uvm" 
@@ -28,19 +29,20 @@
   boot.kernelParams = [
     "drm.edid_firmware=eDP-1:edid/edid.bin"
     "video=eDP-1:e"
-    "nvidia_drm.fbdev=1"
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    "nvidia-drm.fbdev=1"
+    # "nvidia-drm.modeset=1"
+    # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
-  boot.kernelPatches = [
-    {
-      name = "edid-loader-fix-config";
-      patch = null;
-      extraConfig = ''
-        FW_LOADER y
-      '';
-    }
-  ];
+  # boot.kernelPatches = [
+  #   {
+  #     name = "edid-loader-fix-config";
+  #     patch = null;
+  #     extraConfig = ''
+  #       FW_LOADER y
+  #     '';
+  #   }
+  # ];
 
   networking.hostName = "froggo"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -95,48 +97,16 @@
     };
   };
 
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
-
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "Hyprland";
-        user = "froggo";
-      };
-      default_session = initial_session;
-    };
-  };
-  # services.displayManager = {
-  #   sddm = {
-  #     enable = true;
-  #     wayland = {
-  #       enable = false;
-  #     };
-  #   };
-  # };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    # jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    # media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -182,12 +152,12 @@
     };  	
   };
 
-  programs.hyprland = {
-    enable = true;
-    package = pkgs-unstable.hyprland;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = pkgs-unstable.hyprland;
+  #   portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  #   xwayland.enable = true;
+  # };
 
 
   # Bluetooth --------------------------------------------------
@@ -199,16 +169,49 @@
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
-    package = pkgs-unstable.mesa.drivers;
     driSupport = true;
     driSupport32Bit = true;
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [
-    "amdgpu" 
-    "nvidia"
-  ];
+  services = {
+    xserver = {
+      videoDrivers = [
+        "amdgpu"
+        "nvidia"
+      ];
+      enable = true;
+      xkb.layout = "us";
+      xkb.variant = "";
+      # desktopManager = {
+      #   gnome.enable = true;
+      # };
+      # displayManager = {
+      #   gdm = {
+      #     enable = true;
+      #   };
+      # };
+    };
+
+
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
+    desktopManager = {
+      plasma6.enable = true;
+    };
+  };
+
+  # List services that you want to enable:
+  services = {
+    resolved.enable = true;
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+  };
+
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -217,18 +220,22 @@
     open = false;
     nvidiaSettings = true;
     forceFullCompositionPipeline = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.production;
-    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "555.58.02";
-      sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
-      sha256_aarch64 = "sha256-wb20isMrRg8PeQBU96lWJzBMkjfySAUaqt4EgZnhyF8=";
-      openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
-      settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
-      persistencedSha256 = "sha256-a1D7ZZmcKFWfPjjH1REqPM5j/YLWKnbkP9qfRyIyxAw=";
-    };
+    # package = config.boot.kernelPackages.nvidiaPackages.beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+    #   version = "555.58.02";
+    #   sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+    #   sha256_aarch64 = "sha256-wb20isMrRg8PeQBU96lWJzBMkjfySAUaqt4EgZnhyF8=";
+    #   openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
+    #   settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
+    #   persistencedSha256 = "sha256-a1D7ZZmcKFWfPjjH1REqPM5j/YLWKnbkP9qfRyIyxAw=";
+    # };
   };
 
   hardware.nvidia.prime = {
+		offload = {
+			enable = true;
+			enableOffloadCmd = true;
+		};
     amdgpuBusId = "PCI:6:0:0";
     nvidiaBusId = "PCI:1:0:0";
   };
@@ -252,11 +259,6 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
-  services.resolved.enable = true;
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

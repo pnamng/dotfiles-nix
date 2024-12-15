@@ -55,23 +55,24 @@
 
     # wm/de related
     pkgs.fuzzel
-    pkgs-unstable.waybar
-    pkgs.hyprpaper
-    pkgs-unstable.hyprlock
-    pkgs-unstable.hyprcursor
-    pkgs.hypridle
+    # pkgs-unstable.waybar
+    # pkgs.hyprpaper
+    # pkgs-unstable.hyprlock
+    # pkgs-unstable.hyprcursor
+    # pkgs.hypridle
     
     pkgs.tmux
     pkgs.lua
     pkgs.lazygit
 
     # ---------------------------
-    (pkgs-unstable.microsoft-edge.override {
-      commandLineArgs = [
-        "--ozone-platform=wayland"
-        "--enable-wayland-ime"
-      ];
-    })
+    # (pkgs-unstable.microsoft-edge.override {
+    #   commandLineArgs = [
+    #     "--ozone-platform=wayland"
+    #     "--enable-wayland-ime"
+    #   ];
+    # })
+    pkgs.microsoft-edge
     pkgs-unstable.spotify
     pkgs-unstable.alacritty
   ];

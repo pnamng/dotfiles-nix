@@ -9,14 +9,9 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-# nixvim = {
-#   url = "github:nix-community/nixvim";
-#   inputs.nixpkgs.follows = "nixpkgs";
-# };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nixpkgs-b76567c281, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, nixpkgs-unstable, nixpkgs-b76567c281, home-manager, ... }: {
     nixosConfigurations.froggo = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = {
@@ -35,23 +30,22 @@
       };
       modules = [
         ./configuration.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.users.froggo = import ./home.nix;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              pkgs-unstable = import nixpkgs-unstable {
-                inherit system;
-                config.allowUnfree = true;
-              };
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.users.froggo = import ./home.nix;
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            pkgs-unstable = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
             };
-          }
+          };
+        }
       ];
-# --------------------------------------------------
+      # --------------------------------------------------
     };
   };
 }
