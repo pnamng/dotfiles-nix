@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, lib, ... }:
 
 {
   imports =
@@ -18,8 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   ## Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.kernelModules = [ 
+  boot.kernelPackages = pkgs.linuxPackages_latest; boot.initrd.kernelModules = [ 
     "amdgpu"
     "nvidia"
     "nvidia_modeset" 
@@ -27,8 +26,8 @@
     "nvidia_drm"
   ];
   boot.kernelParams = [
-    "drm.edid_firmware=eDP-1:edid/edid.bin"
-    "video=eDP-1:e"
+    # "drm.edid_firmware=eDP-1:edid/edid.bin"
+    # "video=eDP-1:e"
     "nvidia-drm.fbdev=1"
     # "nvidia-drm.modeset=1"
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
@@ -130,11 +129,14 @@
     vim
     zsh
     lshw
+    nodejs
     git
     gcc
     dig
     gnupg
     nixd
+    # node pkgs
+    nodePackages."typescript"
   ];
 
   programs.firefox.enable = true;
@@ -167,10 +169,9 @@
 
   # Graphics ---------------------------------------------------
   # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # Load nvidia driver for Xorg and Wayland
@@ -246,6 +247,10 @@
       cp "${./edid/edid.bin}" $out/lib/firmware/edid/edid.bin
     '')
   ];
+  hardware.display.edid.enable = true;
+  hardware.display.outputs."eDP-1".edid = "edid.bin";
+
+  # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
   # ---------------------------------------------------------------------------
   virtualisation.virtualbox.host.enable = true;
