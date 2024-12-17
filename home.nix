@@ -53,18 +53,12 @@
     pkgs.glxinfo
     pkgs.openssl
 
-    # wm/de related
     pkgs.fuzzel
-    # pkgs-unstable.waybar
-    # pkgs.hyprpaper
-    # pkgs-unstable.hyprlock
-    # pkgs-unstable.hyprcursor
-    # pkgs.hypridle
-    
     pkgs.tmux
     pkgs.lua
     pkgs.lazygit
 
+    pkgs.mpv
     # ---------------------------
     # (pkgs-unstable.microsoft-edge.override {
     #   commandLineArgs = [
@@ -75,6 +69,7 @@
     pkgs.microsoft-edge
     pkgs-unstable.spotify
     pkgs-unstable.alacritty
+    pkgs.darktable
   ];
 
   programs.git = {
@@ -96,7 +91,6 @@
   };
 
   home.file.".tmux.conf".source = ./.tmux.conf;
-  # home.file.".config/hypr/".source = ./hypr;
   home.file.".config/fuzzel/".source = ./fuzzel;
   home.file.".config/alacritty/".source = ./alacritty;
   home.file.".config/nvim/" = {
@@ -104,6 +98,7 @@
     recursive = true;
   };
 
+  # should not be modified i think
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
