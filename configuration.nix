@@ -115,7 +115,7 @@
   users.users.froggo = {
     isNormalUser = true;
     description = "froggo";
-    extraGroups = [ "networkmanager" "wheel" "vboxusers" ];
+    extraGroups = [ "networkmanager" "wheel" "vboxusers" "docker" ];
     shell = pkgs.zsh;
     packages = with pkgs; [];
   };
@@ -154,14 +154,6 @@
     };  	
   };
 
-  # programs.hyprland = {
-  #   enable = true;
-  #   package = pkgs-unstable.hyprland;
-  #   portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  #   xwayland.enable = true;
-  # };
-
-
   # Bluetooth --------------------------------------------------
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -184,16 +176,7 @@
       enable = true;
       xkb.layout = "us";
       xkb.variant = "";
-      # desktopManager = {
-      #   gnome.enable = true;
-      # };
-      # displayManager = {
-      #   gdm = {
-      #     enable = true;
-      #   };
-      # };
     };
-
 
     displayManager = {
       sddm = {
@@ -201,6 +184,7 @@
         wayland.enable = true;
       };
     };
+
     desktopManager = {
       plasma6.enable = true;
     };
@@ -211,6 +195,10 @@
     resolved.enable = true;
     # Enable the OpenSSH daemon.
     openssh.enable = true;
+    mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+    };
   };
 
 
@@ -250,10 +238,14 @@
   hardware.display.edid.enable = true;
   hardware.display.outputs."eDP-1".edid = "edid.bin";
 
-  # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-
   # ---------------------------------------------------------------------------
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.docker.enable = true;
+  # virtualisation.docker.rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
+
   # virtualisation.virtualbox.host.enableExtenstionPack = true;
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -4,7 +4,7 @@
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
-  home.file.".icons/Bibata-Modern-Ice".source = "${pkgs.bibata-cursors}/share/icons/Bibata-Modern-Ice";
+  # home.file.".icons/Bibata-Modern-Ice".source = "${pkgs.bibata-cursors}/share/icons/Bibata-Modern-Ice";
   # themes --------------------
   gtk = {
     enable = true;
@@ -12,25 +12,25 @@
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
     };
-
-    theme.package = pkgs.gruvbox-gtk-theme;
-    theme.name = "Gruvbox-Dark";
-
-    iconTheme.package = pkgs.numix-icon-theme;
-    iconTheme.name = "Numix";
-
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
   };
+
+  #   theme.package = pkgs.gruvbox-gtk-theme;
+  #   theme.name = "Gruvbox-Dark";
+
+  #   iconTheme.package = pkgs.numix-icon-theme;
+  #   iconTheme.name = "Numix";
+  #   gtk3.extraConfig = {
+  #     Settings = ''
+  #       gtk-application-prefer-dark-theme=1
+  #     '';
+  #   };
+
+  #   gtk4.extraConfig = {
+  #     Settings = ''
+  #       gtk-application-prefer-dark-theme=1
+  #     '';
+  #   };
+  # };
 
   qt = {
     enable = true;
@@ -45,7 +45,7 @@
     pkgs.ripgrep
     pkgs.jq
     pkgs.eza
-    pkgs.xfce.thunar
+    # pkgs.xfce.thunar
     # sth gtk related
     pkgs.dconf
 
@@ -60,16 +60,16 @@
 
     pkgs.mpv
     # ---------------------------
-    # (pkgs-unstable.microsoft-edge.override {
-    #   commandLineArgs = [
-    #     "--ozone-platform=wayland"
-    #     "--enable-wayland-ime"
-    #   ];
-    # })
-    pkgs.microsoft-edge
+    (pkgs-unstable.microsoft-edge.override {
+      commandLineArgs = [
+        "--ozone-platform=wayland"
+        "--enable-wayland-ime"
+      ];
+    })
     pkgs-unstable.spotify
     pkgs-unstable.alacritty
     pkgs.darktable
+    pkgs.francis
   ];
 
   programs.git = {
