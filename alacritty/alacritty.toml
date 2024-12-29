@@ -18,6 +18,9 @@ opacity = 1
 dynamic_padding = false
 padding.x = 0
 padding.y = 0
+[window.dimensions]
+columns = 120
+lines = 40
 
 # [colors.primary]
 # background = "0x282828"
