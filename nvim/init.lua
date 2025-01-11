@@ -2,7 +2,7 @@ require("plugins")
 require("options")
 require("keymaps")
 
-vim.g.ale_fixers = {'prettier', 'eslint', 'gopls'}
+vim.g.ale_fixers = {'prettier', 'eslint', 'gopls', 'nixfmt'}
 vim.g.ale_fix_on_save = false 
 
 require('nvim-ts-autotag').setup()
@@ -283,7 +283,7 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
-require('lspconfig')['tsserver'].setup {}
+require('lspconfig')['ts_ls'].setup {}
 require('lspconfig')['gopls'].setup {
   settings = {
     gopls = {

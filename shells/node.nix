@@ -6,13 +6,13 @@
   pkgs.mkShellNoCC {
     packages = with pkgs; [
       cowsay
-        lolcat
-        nodejs_18
+      lolcat
+      nodejs_18
     ];
 
     GREETING = "Node 18!";
 
-    shellHook = ''
+      shellHook = ''
       echo $GREETING | cowsay | lolcat
       '';
-  }
+}

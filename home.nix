@@ -4,7 +4,6 @@
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
-  # home.file.".icons/Bibata-Modern-Ice".source = "${pkgs.bibata-cursors}/share/icons/Bibata-Modern-Ice";
   # themes --------------------
   gtk = {
     enable = true;
@@ -14,62 +13,47 @@
     };
   };
 
-  #   theme.package = pkgs.gruvbox-gtk-theme;
-  #   theme.name = "Gruvbox-Dark";
-
-  #   iconTheme.package = pkgs.numix-icon-theme;
-  #   iconTheme.name = "Numix";
-  #   gtk3.extraConfig = {
-  #     Settings = ''
-  #       gtk-application-prefer-dark-theme=1
-  #     '';
-  #   };
-
-  #   gtk4.extraConfig = {
-  #     Settings = ''
-  #       gtk-application-prefer-dark-theme=1
-  #     '';
-  #   };
-  # };
-
   qt = {
     enable = true;
   };
 
-  home.packages = [
-    pkgs.fastfetch
+  home.packages = with pkgs; with pkgs-unstable; [
+    fastfetch
 
-    pkgs.zip
-    pkgs.xz
-    pkgs.unzip
-    pkgs.ripgrep
-    pkgs.jq
-    pkgs.eza
-    # pkgs.xfce.thunar
-    # sth gtk related
-    pkgs.dconf
+    zip
+    xz
+    unzip
+    ripgrep
+    jq
+    eza
+    dconf
 
-    pkgs.brightnessctl
-    pkgs.glxinfo
-    pkgs.openssl
+    brightnessctl
+    glxinfo
+    openssl
 
-    pkgs.fuzzel
-    pkgs.tmux
-    pkgs.lua
-    pkgs.lazygit
+    fuzzel
+    tmux
+    lua
+    lazygit
 
-    pkgs.mpv
+    mpv
+    darktable
+    francis
+
+    hyprland
+    hyprlock
+    waybar
+  ] ++ [
     # ---------------------------
-    (pkgs-unstable.microsoft-edge.override {
+    (microsoft-edge.override {
       commandLineArgs = [
         "--ozone-platform=wayland"
         "--enable-wayland-ime"
       ];
     })
-    pkgs-unstable.spotify
-    pkgs-unstable.alacritty
-    pkgs.darktable
-    pkgs.francis
+    spotify
+    alacritty
   ];
 
   programs.git = {
@@ -84,6 +68,10 @@
     extraLuaConfig = lib.fileContents ./nvim/lua/init.lua;
   };
 
+  home.file.".config/hypr/" = {
+    source = ./hypr;
+    recursive = false;
+  };
 
   home.file.".config/waybar/" = {
     source = ./waybar;

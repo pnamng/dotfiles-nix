@@ -41,7 +41,7 @@ window#waybar {
 #network {
   background: @bg0;
   padding: 0 4px;
-  border: 1px solid @fg;
+  border: 1px solid @bg1;
 }
 
 #battery {
@@ -75,6 +75,7 @@ window#waybar {
   margin: 0 2px;
   padding: 0 8px;
   border-radius: 8px;
+  border: 1px solid @bg1;
 }
 
 #tray {
@@ -83,6 +84,7 @@ window#waybar {
   background: @bg0;
   border-radius: 8px;
   margin-left: 2px;
+  border: 1px solid @bg1;
 }
 
 #workspaces {
@@ -152,10 +154,12 @@ window#waybar {
   margin-right: 2px;
   padding: 0 12px;
   border-radius: 8px;
+  border: 1px solid @bg1;
 }
 
 #backlight {
   margin: 0 2px;
   padding: 0 12px;
   border-radius: 8px;
+  border: 1px solid @bg1;
 }

@@ -18,7 +18,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   ## Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest; boot.initrd.kernelModules = [ 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.kernelModules = [ 
     "amdgpu"
     "nvidia"
     "nvidia_modeset" 
@@ -32,16 +33,6 @@
     # "nvidia-drm.modeset=1"
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
-
-  # boot.kernelPatches = [
-  #   {
-  #     name = "edid-loader-fix-config";
-  #     patch = null;
-  #     extraConfig = ''
-  #       FW_LOADER y
-  #     '';
-  #   }
-  # ];
 
   networking.hostName = "froggo"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -75,6 +66,7 @@
       inter
       font-awesome
       cascadia-code
+      noto-fonts-cjk-sans
       (nerdfonts.override { 
         fonts = [ 
           "FiraCode" 
@@ -136,6 +128,8 @@
     dig
     gnupg
     nixd
+    nixfmt-rfc-style
+    gvfs
     # node pkgs
     nodePackages."typescript"
   ];
