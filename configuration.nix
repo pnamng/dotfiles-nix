@@ -18,7 +18,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   ## Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest; boot.initrd.kernelModules = [ 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.kernelModules = [ 
     "amdgpu"
     "nvidia"
     "nvidia_modeset" 
@@ -32,16 +33,6 @@
     # "nvidia-drm.modeset=1"
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
-
-  # boot.kernelPatches = [
-  #   {
-  #     name = "edid-loader-fix-config";
-  #     patch = null;
-  #     extraConfig = ''
-  #       FW_LOADER y
-  #     '';
-  #   }
-  # ];
 
   networking.hostName = "froggo"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -61,7 +52,8 @@
   };
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-mozc
       fcitx5-gtk
@@ -74,6 +66,7 @@
       inter
       font-awesome
       cascadia-code
+      noto-fonts-cjk-sans
       (nerdfonts.override { 
         fonts = [ 
           "FiraCode" 
@@ -117,7 +110,12 @@
     description = "froggo";
     extraGroups = [ "networkmanager" "wheel" "vboxusers" "docker" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [];
+    packages = with pkgs; [
+      nodejs
+      networkmanagerapplet
+      # node pkgs
+      nodePackages."typescript"
+    ];
   };
 
   # Allow unfree packages
@@ -125,22 +123,22 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
     vim
     zsh
     lshw
-    nodejs
     git
     gcc
     dig
     gnupg
     nixd
-    # node pkgs
-    nodePackages."typescript"
+    nixfmt-rfc-style
+    gvfs
   ];
 
+  programs.hyprland.enable = true;
   programs.firefox.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.zsh = {
     enable = true;
@@ -177,6 +175,7 @@
       xkb.layout = "us";
       xkb.variant = "";
     };
+
 
     displayManager = {
       sddm = {

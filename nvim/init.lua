@@ -2,7 +2,7 @@ require("plugins")
 require("options")
 require("keymaps")
 
-vim.g.ale_fixers = {'prettier', 'eslint', 'gopls'}
+vim.g.ale_fixers = {'prettier', 'eslint', 'gopls', 'nixfmt'}
 vim.g.ale_fix_on_save = false 
 
 require('nvim-ts-autotag').setup()
@@ -28,7 +28,7 @@ require('telescope').setup{
 -- lualine config
 require('lualine').setup({
   options = {
-    theme = 'gruvbox',
+    theme = 'everforest',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
   }
@@ -283,7 +283,7 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
-require('lspconfig')['tsserver'].setup {}
+require('lspconfig')['ts_ls'].setup {}
 require('lspconfig')['gopls'].setup {
   settings = {
     gopls = {
@@ -358,32 +358,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Default options:
-require("gruvbox").setup({
-  terminal_colors = true, -- add neovim terminal colors
-  undercurl = true,
-  underline = true,
-  bold = true,
-  italic = {
-    strings = true,
-    emphasis = true,
-    comments = true,
-    operators = false,
-    folds = true,
-  },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "", -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {},
-  dim_inactive = false,
-  transparent_mode = false,
-})
-
 local nvim_lsp = require("lspconfig")
 nvim_lsp.nixd.setup({
   settings = {
@@ -395,6 +369,6 @@ nvim_lsp.nixd.setup({
   },
 })
 
-vim.cmd("colorscheme gruvbox")
-vim.cmd[[hi! VertSplit guifg=white guibg=white ctermfg=white ctermbg=white]]
-vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]
+vim.cmd("colorscheme everforest")
+-- vim.cmd[[hi! VertSplit guifg=white guibg=white ctermfg=white ctermbg=white]]
+-- vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]
