@@ -6,10 +6,10 @@
     "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
-    "margin-bottom": 8,
+    "margin-bottom": 0,
     "margin-top": 0,
-    "margin-right": 10,
-    "margin-left": 10,
+    "margin-right": 0,
+    "margin-left": 0,
     "modules-left": [
       "hyprland/workspaces",
       "custom/media"
@@ -145,9 +145,9 @@
     },
     "battery": {
       "states": {
-        // "good": 95,
-        "warning": 30,
-        "critical": 15,
+        "good": 80,
+        "warning": 20,
+        "critical": 10,
       },
       "format": "{icon} {capacity}%",
       "format-full": "{icon} {capacity}%",
