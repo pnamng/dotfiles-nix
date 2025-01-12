@@ -41,8 +41,10 @@
     darktable
     francis
 
-    hyprland
     hyprlock
+    hypridle
+    swww
+
     waybar
   ] ++ [
     # ---------------------------
@@ -50,6 +52,7 @@
       commandLineArgs = [
         "--ozone-platform=wayland"
         "--enable-wayland-ime"
+        "--password-store=kwallet6"
       ];
     })
     spotify
