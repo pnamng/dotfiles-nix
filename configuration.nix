@@ -144,7 +144,7 @@
     enable = true;
     ohMyZsh = {
       enable = true;
-      theme = "robbyrussell";
+      theme = "mortalscumbag";
       plugins = [
         "z"
         "git"
