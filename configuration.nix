@@ -5,10 +5,10 @@
 { config, pkgs, pkgs-unstable, lib, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan. 
+    ./hardware-configuration.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -27,8 +27,6 @@
     "nvidia_drm"
   ];
   boot.kernelParams = [
-    # "drm.edid_firmware=eDP-1:edid/edid.bin"
-    # "video=eDP-1:e"
     "nvidia-drm.fbdev=1"
     # "nvidia-drm.modeset=1"
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
@@ -112,6 +110,7 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       nodejs
+      playerctl
       networkmanagerapplet
       # node pkgs
       nodePackages."typescript"
@@ -228,6 +227,7 @@
     nvidiaBusId = "PCI:1:0:0";
   };
 
+  # set edid
   hardware.firmware = [
     (pkgs.runCommandNoCC "firmware-custom-edid" {compressFirmware = false;} ''
       mkdir -p $out/lib/firmware/edid/
