@@ -68,7 +68,7 @@
   programs.neovim = {
     enable = true;
     package = pkgs-unstable.neovim-unwrapped;
-    extraLuaConfig = lib.fileContents ./nvim/lua/init.lua;
+    extraLuaConfig = lib.fileContents ./nvim/init.lua;
   };
 
   home.file.".config/hypr/" = {
