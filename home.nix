@@ -48,13 +48,12 @@
     waybar
   ] ++ [
     # ---------------------------
-    (microsoft-edge.override {
-      commandLineArgs = [
-        "--ozone-platform=wayland"
-        "--enable-wayland-ime"
-        "--password-store=kwallet6"
-      ];
-    })
+    # (microsoft-edge.override {
+    #   commandLineArgs = [
+    #     "--ozone-platform=wayland"
+    #     "--password-store=kwallet6"
+    #   ];
+    # })
     spotify
     alacritty
   ];
