@@ -190,13 +190,14 @@
     displayManager = {
       sddm = {
         enable = true;
+
         wayland.enable = true;
       };
     };
 
-    desktopManager = {
-      plasma6.enable = true;
-    };
+    # desktopManager = {
+    #   plasma6.enable = true;
+    # };
   };
 
   # List services that you want to enable:
@@ -209,7 +210,6 @@
       package = pkgs.mariadb;
     };
   };
-
 
   hardware.nvidia = {
     modesetting.enable = true;
