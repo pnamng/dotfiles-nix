@@ -65,9 +65,7 @@ return require("lazy").setup({
   {'hrsh7th/cmp-path'},
   {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/nvim-cmp'},
-  -- { 
-  --   'ellisonleao/gruvbox.nvim'
-  -- }
+  {'akinsho/toggleterm.nvim', version = "*", config = true}
 })
 
 

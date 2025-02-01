@@ -48,13 +48,12 @@
     waybar
   ] ++ [
     # ---------------------------
-    (microsoft-edge.override {
-      commandLineArgs = [
-        "--ozone-platform=wayland"
-        "--enable-wayland-ime"
-        "--password-store=kwallet6"
-      ];
-    })
+    # (microsoft-edge.override {
+    #   commandLineArgs = [
+    #     "--ozone-platform=wayland"
+    #     "--password-store=kwallet6"
+    #   ];
+    # })
     spotify
     alacritty
   ];
@@ -68,7 +67,7 @@
   programs.neovim = {
     enable = true;
     package = pkgs-unstable.neovim-unwrapped;
-    extraLuaConfig = lib.fileContents ./nvim/lua/init.lua;
+    extraLuaConfig = lib.fileContents ./nvim/init.lua;
   };
 
   home.file.".config/hypr/" = {

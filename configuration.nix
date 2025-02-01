@@ -1,14 +1,10 @@
-# Edit this configuration file to define what shoud be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, pkgs-unstable, lib, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan. 
+    ./hardware-configuration.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -27,8 +23,6 @@
     "nvidia_drm"
   ];
   boot.kernelParams = [
-    # "drm.edid_firmware=eDP-1:edid/edid.bin"
-    # "video=eDP-1:e"
     "nvidia-drm.fbdev=1"
     # "nvidia-drm.modeset=1"
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
@@ -61,6 +55,7 @@
     ];
   };
 
+  # fonts --------------------------------
   fonts = {
     packages = with pkgs; [
       inter
@@ -101,6 +96,11 @@
     pulse.enable = true;
   };
 
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -110,11 +110,14 @@
     description = "froggo";
     extraGroups = [ "networkmanager" "wheel" "vboxusers" "docker" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
+    packages = with pkgs; with pkgs.nodePackages; [
       nodejs
+      # playerctl
       networkmanagerapplet
+    ] ++ [
       # node pkgs
-      nodePackages."typescript"
+      typescript
+      typescript-language-server
     ];
   };
 
@@ -124,7 +127,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; with pkgs-unstable; [
     vim
     zsh
     lshw
@@ -135,6 +138,13 @@
     nixd
     nixfmt-rfc-style
     gvfs
+  ] ++ [
+    # ---------------------------
+    (microsoft-edge.override {
+      commandLineArgs = [
+        "--ozone-platform=wayland"
+      ];
+    })
   ];
 
   programs.hyprland.enable = true;
@@ -228,6 +238,7 @@
     nvidiaBusId = "PCI:1:0:0";
   };
 
+  # set edid
   hardware.firmware = [
     (pkgs.runCommandNoCC "firmware-custom-edid" {compressFirmware = false;} ''
       mkdir -p $out/lib/firmware/edid/

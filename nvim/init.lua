@@ -1,6 +1,7 @@
 require("plugins")
 require("options")
 require("keymaps")
+require("lsp")
 
 vim.g.ale_fixers = {'prettier', 'eslint', 'gopls', 'nixfmt'}
 vim.g.ale_fix_on_save = false 
@@ -177,46 +178,6 @@ require("nvim-tree").setup({
   }
 })
 
--- Define the command to get Node.js version
-local command = "node -v"
-
--- Execute the command
-local handle = io.popen(command)
-local result = handle:read("*a")
-result = result:gsub("[\n\r]", "") 
-handle:close()
-
--- TS directory
-local tsDirectory = "/home/ech/.nvm/versions/node/" .. result .. "/lib/node_modules/typescript/lib"
-
-local lspconfig_configs = require'lspconfig.configs'
-local lspconfig_util = require 'lspconfig.util'
-
-require 'lspconfig'.volar.setup {
-  filetypes = { 
-    'typescript', 
-    'javascript', 
-    'vue',
-    'json'
-  },
-  init_options = {
-    typescript = {
-      tsdk = tsDirectory,
-    },
-    documentFeatures = {
-      selectionRange 			= true,
-      foldingRange 				= true,
-      linkedEditingRange 	= true,
-      documentSymbol 			= true,
-      -- not supported - https://github.com/neovim/neovim/pull/13654
-      documentColor 			= false,
-      documentFormatting 	= {
-        defaultPrintWidth = 100,
-      },
-    }
-  }
-}
-
 -- cmp setup 
 local cmp = require'cmp'
 
@@ -279,23 +240,6 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-
-require('lspconfig')['ts_ls'].setup {}
-require('lspconfig')['gopls'].setup {
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
-    },
-  }
-}
-
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
@@ -356,17 +300,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format { async = true }
     end, opts)
   end,
-})
-
-local nvim_lsp = require("lspconfig")
-nvim_lsp.nixd.setup({
-  settings = {
-    nixd = {
-      formatting = {
-        command = { "nixfmt" },
-      },
-    },
-  },
 })
 
 vim.cmd("colorscheme everforest")
