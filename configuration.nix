@@ -138,6 +138,9 @@
     nixd
     nixfmt-rfc-style
     gvfs
+    xfce.thunar
+    qbittorrent
+    obsidian
   ] ++ [
     # ---------------------------
     (microsoft-edge.override {
@@ -227,15 +230,14 @@
     #   settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
     #   persistencedSha256 = "sha256-a1D7ZZmcKFWfPjjH1REqPM5j/YLWKnbkP9qfRyIyxAw=";
     # };
-  };
-
-  hardware.nvidia.prime = {
-		offload = {
-			enable = true;
-			enableOffloadCmd = true;
-		};
-    amdgpuBusId = "PCI:6:0:0";
-    nvidiaBusId = "PCI:1:0:0";
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      amdgpuBusId = "PCI:6:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 
   # set edid
