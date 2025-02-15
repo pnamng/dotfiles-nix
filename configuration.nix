@@ -150,6 +150,32 @@
     })
   ];
 
+  # Load nvidia driver for Xorg and Wayland
+  services = {
+    xserver = {
+      videoDrivers = [
+        "amdgpu"
+        "nvidia"
+      ];
+      enable = true;
+      xkb.layout = "us";
+      xkb.variant = "";
+    };
+
+
+    displayManager = {
+      sddm = {
+        enable = true;
+        extraPackages = [
+          pkgs.libsForQt5.qtgraphicaleffects
+          pkgs.libsForQt5.qtmultimedia
+        ];
+        theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+
+        wayland.enable = true;
+      };
+    };
+  };
   programs.hyprland.enable = true;
   programs.firefox.enable = true;
 
@@ -170,6 +196,7 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
+
   # Graphics ---------------------------------------------------
   # Enable OpenGL
   hardware.graphics = {
@@ -177,31 +204,7 @@
     enable32Bit = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services = {
-    xserver = {
-      videoDrivers = [
-        "amdgpu"
-        "nvidia"
-      ];
-      enable = true;
-      xkb.layout = "us";
-      xkb.variant = "";
-    };
 
-
-    displayManager = {
-      sddm = {
-        enable = true;
-
-        wayland.enable = true;
-      };
-    };
-
-    # desktopManager = {
-    #   plasma6.enable = true;
-    # };
-  };
 
   # List services that you want to enable:
   services = {

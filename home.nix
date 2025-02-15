@@ -6,6 +6,7 @@
 
   # themes --------------------
   gtk = {
+    
     enable = true;
     cursorTheme = {
       name = "Bibata-Modern-Ice";
@@ -25,8 +26,8 @@
   };
 
   home.packages = with pkgs; with pkgs-unstable; [
+    # utils
     fastfetch
-
     zip
     xz
     unzip
@@ -34,26 +35,29 @@
     jq
     eza
     dconf
-
     brightnessctl
     glxinfo
     openssl
+    bluetuith
 
-    fuzzel
-    tmux
     lua
-    lazygit
 
-    mpv
-    darktable
-    francis
-
+    # interfaces
     hyprlock
     hypridle
     swww
-
     waybar
+    fuzzel
     nwg-look
+
+    # productivity
+    tmux
+    lazygit
+    francis
+
+    mpv
+    darktable
+    lmstudio
   ] ++ [
     # ---------------------------
     # (microsoft-edge.override {

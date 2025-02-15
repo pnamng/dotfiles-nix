@@ -18,3 +18,5 @@ vim.opt.fillchars = {
 }
 
 vim.opt.cursorline = true
+vim.opt.clipboard = "unnamedplus"
+
