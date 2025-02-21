@@ -7,10 +7,10 @@
     packages = with pkgs; [
       cowsay
       lolcat
-      nodejs_18
+      nodejs_20
     ];
 
-    GREETING = "Node 18!";
+    GREETING = "Node 20";
 
       shellHook = ''
       echo $GREETING | cowsay | lolcat

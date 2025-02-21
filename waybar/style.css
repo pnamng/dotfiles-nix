@@ -9,12 +9,15 @@ window#waybar {
 }
 
 #workspaces button {
-  padding: 0 4px;
   color: #3d484d;
 }
 
 #workspaces button.active {
   color: #d3c6aa;
+}
+
+#workspaces button.active:hover {
+  color: #3d484d;
 }
 
 #workspaces button:hover {
@@ -29,7 +32,7 @@ window#waybar {
 #backlight,
 #pulseaudio,
 #network {
-  padding: 0 4px;
+  padding: 0 8px;
 }
 
 #battery.good {

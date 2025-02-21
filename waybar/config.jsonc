@@ -30,6 +30,8 @@
     ],
     // Modules configuration
     "hyprland/workspaces": {
+      "align": "center",
+      "justify": "center",
       "format": "{icon}",
       "format-icons": {
         "1": "",
