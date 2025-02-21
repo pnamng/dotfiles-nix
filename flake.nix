@@ -30,13 +30,13 @@
         };
       };
       modules = [
-        ./configuration.nix
+        ./modules/nixos
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
-          home-manager.users.froggo = import ./home.nix;
+          home-manager.users.froggo = import ./home;
           home-manager.extraSpecialArgs = {
             inherit inputs;
             pkgs-unstable = import nixpkgs-unstable {

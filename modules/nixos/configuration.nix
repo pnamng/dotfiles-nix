@@ -1,31 +1,10 @@
 { pkgs, pkgs-unstable, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan. 
-    ./hardware-configuration.nix
-  ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Boot config --------------------------------------------------
-  ## Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  ## Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.kernelModules = [ 
-    "amdgpu"
-    "nvidia"
-    "nvidia_modeset" 
-    "nvidia_uvm" 
-    "nvidia_drm"
-  ];
-  boot.kernelParams = [
-    "nvidia-drm.fbdev=1"
-    # "nvidia-drm.modeset=1"
-    # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  imports = [
+    "../../system"
   ];
 
   networking.hostName = "froggo"; # Define your hostname.
@@ -55,37 +34,6 @@
     ];
   };
 
-  # fonts --------------------------------
-  fonts = {
-    packages = with pkgs; [
-      inter
-      font-awesome
-      cascadia-code
-      noto-fonts-cjk-sans
-      (nerdfonts.override { 
-        fonts = [ 
-          "FiraCode" 
-          "JetBrainsMono"
-          "Overpass"
-        ]; 
-      })
-    ];
-    fontconfig = {
-      cache32Bit = true;
-      allowBitmaps = true;
-      useEmbeddedBitmaps = true;
-      subpixel.rgba = "rgb";
-      hinting.style = "medium";
-      defaultFonts = {
-        serif = ["NotoSerif"];
-        sansSerif = ["Inter"];
-        monospace = [ "JetBrainsMono" ];
-      };
-    };
-  };
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -112,7 +60,11 @@
     shell = pkgs.zsh;
     packages = with pkgs; with pkgs.nodePackages; [
       nodejs
-      # playerctl
+      playerctl
+      zed-editor
+      xfce.thunar
+      qbittorrent
+      obsidian
       networkmanagerapplet
     ] ++ [
       # node pkgs
@@ -138,9 +90,6 @@
     nixd
     nixfmt-rfc-style
     gvfs
-    xfce.thunar
-    qbittorrent
-    obsidian
   ] ++ [
     # ---------------------------
     (microsoft-edge.override {
@@ -170,41 +119,12 @@
           pkgs.libsForQt5.qtgraphicaleffects
           pkgs.libsForQt5.qtmultimedia
         ];
-        theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+        theme = "${import ../../sddm-theme.nix { inherit pkgs; }}";
 
         wayland.enable = true;
       };
     };
   };
-  programs.hyprland.enable = true;
-  programs.firefox.enable = true;
-
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-      enable = true;
-      theme = "mortalscumbag";
-      plugins = [
-        "z"
-        "git"
-      ];
-    };  	
-  };
-
-  # Bluetooth --------------------------------------------------
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-
-
-  # Graphics ---------------------------------------------------
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-
 
   # List services that you want to enable:
   services = {
@@ -216,42 +136,6 @@
       package = pkgs.mariadb;
     };
   };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    forceFullCompositionPipeline = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "555.58.02";
-    #   sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
-    #   sha256_aarch64 = "sha256-wb20isMrRg8PeQBU96lWJzBMkjfySAUaqt4EgZnhyF8=";
-    #   openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
-    #   settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
-    #   persistencedSha256 = "sha256-a1D7ZZmcKFWfPjjH1REqPM5j/YLWKnbkP9qfRyIyxAw=";
-    # };
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      amdgpuBusId = "PCI:6:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
-
-  # set edid
-  hardware.firmware = [
-    (pkgs.runCommandNoCC "firmware-custom-edid" {compressFirmware = false;} ''
-      mkdir -p $out/lib/firmware/edid/
-      cp "${./edid/edid.bin}" $out/lib/firmware/edid/edid.bin
-    '')
-  ];
-  hardware.display.edid.enable = true;
-  hardware.display.outputs."eDP-1".edid = "edid.bin";
 
   # ---------------------------------------------------------------------------
   virtualisation.virtualbox.host.enable = true;
