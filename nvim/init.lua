@@ -29,7 +29,7 @@ require('telescope').setup{
 -- lualine config
 require('lualine').setup({
   options = {
-    theme = 'everforest',
+    theme = 'spaceduck',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
   }
@@ -302,6 +302,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.cmd("colorscheme everforest")
+vim.cmd("colorscheme spaceduck")
 -- vim.cmd[[hi! VertSplit guifg=white guibg=white ctermfg=white ctermbg=white]]
 -- vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]
