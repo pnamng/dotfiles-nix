@@ -1,6 +1,10 @@
-{ pkgs, pkgs-unstable, lib, ... }:
+{ inputs, pkgs, pkgs-unstable, lib, ... }:
 
 {
+  imports = [
+    inputs.walker.homeManagerModules.default
+    ./walker
+  ];
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
@@ -47,7 +51,7 @@
     hypridle
     swww
     waybar
-    fuzzel
+    # fuzzel
     nwg-look
 
     # productivity
