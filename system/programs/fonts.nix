@@ -7,12 +7,12 @@
       font-awesome
       cascadia-code
       noto-fonts-cjk-sans
-      (nerdfonts.override { 
-        fonts = [ 
-          "FiraCode" 
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
           "JetBrainsMono"
           "Overpass"
-        ]; 
+        ];
       })
     ];
     fontconfig = {
@@ -22,8 +22,8 @@
       subpixel.rgba = "rgb";
       hinting.style = "medium";
       defaultFonts = {
-        serif = ["NotoSerif"];
-        sansSerif = ["Inter"];
+        serif = [ "NotoSerif" ];
+        sansSerif = [ "Inter" ];
         monospace = [ "JetBrainsMono" ];
       };
     };

@@ -1,16 +1,21 @@
-{ inputs, pkgs, pkgs-unstable, lib, ... }:
+{
+  inputs,
+  pkgs,
+  pkgs-unstable,
+  lib,
+  ...
+}:
 
 {
   imports = [
     inputs.walker.homeManagerModules.default
-    ./walker
   ];
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
   # themes --------------------
   gtk = {
-    
+
     enable = true;
     cursorTheme = {
       name = "Bibata-Modern-Ice";
@@ -21,7 +26,7 @@
       name = "Everforest-Dark-B-LB";
     };
     iconTheme = {
-      name ="ePapirus";
+      name = "ePapirus";
     };
   };
 
@@ -29,50 +34,54 @@
     enable = true;
   };
 
-  home.packages = with pkgs; with pkgs-unstable; [
-    # utils
-    fastfetch
-    zip
-    xz
-    unzip
-    ripgrep
-    jq
-    eza
-    dconf
-    brightnessctl
-    glxinfo
-    openssl
-    bluetuith
+  home.packages =
+    with pkgs;
+    with pkgs-unstable;
+    [
+      # utils
+      fastfetch
+      zip
+      xz
+      unzip
+      ripgrep
+      jq
+      eza
+      dconf
+      brightnessctl
+      glxinfo
+      openssl
+      bluetuith
 
-    lua
+      lua
 
-    # interfaces
-    hyprlock
-    hypridle
-    swww
-    waybar
-    # fuzzel
-    nwg-look
+      # interfaces
+      hyprlock
+      hypridle
+      swww
+      waybar
+      # fuzzel
+      nwg-look
 
-    # productivity
-    tmux
-    lazygit
-    francis
+      # productivity
+      tmux
+      lazygit
+      francis
 
-    mpv
-    darktable
-    lmstudio
-  ] ++ [
-    # ---------------------------
-    # (microsoft-edge.override {
-    #   commandLineArgs = [
-    #     "--ozone-platform=wayland"
-    #     "--password-store=kwallet6"
-    #   ];
-    # })
-    spotify
-    alacritty
-  ];
+      mpv
+      darktable
+      lmstudio
+    ]
+    ++ [
+      # ---------------------------
+      # (microsoft-edge.override {
+      #   commandLineArgs = [
+      #     "--ozone-platform=wayland"
+      #     "--password-store=kwallet6"
+      #   ];
+      # })
+      spotify
+      alacritty
+    ];
 
   programs.git = {
     enable = true;
@@ -102,6 +111,22 @@
   home.file.".config/nvim/" = {
     source = ./nvim;
     recursive = true;
+  };
+
+  programs.walker = {
+    enable = true;
+    runAsService = true;
+
+    # All options from the config.json can be used here.
+    config = {
+      search.placeholder = "Example";
+      ui.fullscreen = true;
+      list = {
+        height = 200;
+      };
+      websearch.prefix = "?";
+      switcher.prefix = "/";
+    };
   };
 
   # should not be modified i think

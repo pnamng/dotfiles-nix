@@ -1,6 +1,8 @@
 {
-  config, pkgs, ...
-}: 
+  config,
+  pkgs,
+  ...
+}:
 {
   programs.walker = {
     enable = true;

@@ -2,10 +2,11 @@
   description = "copied";
 
   outputs =
-    inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
-debug = true;
+      debug = true;
       imports = [
         ./hosts
         # ./lib
@@ -48,8 +49,6 @@ debug = true;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    walker = {
-      url = "github:abenz1267/walker";
-    };
+    walker.url = "github:abenz1267/walker";
   };
 }

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Boot config --------------------------------------------------
   ## Bootloader
   boot = {
@@ -9,11 +10,11 @@
 
     ## Kernel
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.kernelModules = [ 
+    initrd.kernelModules = [
       "amdgpu"
       "nvidia"
-      "nvidia_modeset" 
-      "nvidia_uvm" 
+      "nvidia_modeset"
+      "nvidia_uvm"
       "nvidia_drm"
     ];
     kernelParams = [

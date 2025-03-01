@@ -1,7 +1,10 @@
 { pkgs, pkgs-unstable, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   imports = [
     ./hardware-configuration.nix
@@ -35,6 +38,7 @@
     ];
   };
 
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -57,22 +61,31 @@
   users.users.froggo = {
     isNormalUser = true;
     description = "froggo";
-    extraGroups = [ "networkmanager" "wheel" "vboxusers" "docker" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; with pkgs.nodePackages; [
-      nodejs
-      playerctl
-      zed-editor
-      xfce.thunar
-      qbittorrent
-      obsidian
-      networkmanagerapplet
-      shotwell
-    ] ++ [
-      # node pkgs
-      typescript
-      typescript-language-server
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "vboxusers"
+      "docker"
     ];
+    shell = pkgs.zsh;
+    packages =
+      with pkgs;
+      with pkgs.nodePackages;
+      [
+        nodejs
+        playerctl
+        zed-editor
+        xfce.thunar
+        qbittorrent
+        obsidian
+        networkmanagerapplet
+        shotwell
+      ]
+      ++ [
+        # node pkgs
+        typescript
+        typescript-language-server
+      ];
   };
 
   # Allow unfree packages
@@ -81,25 +94,29 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.systemPackages = with pkgs; with pkgs-unstable; [
-    vim
-    zsh
-    lshw
-    git
-    gcc
-    dig
-    gnupg
-    nixd
-    nixfmt-rfc-style
-    gvfs
-  ] ++ [
-    # ---------------------------
-    (microsoft-edge.override {
-      commandLineArgs = [
-        "--ozone-platform=wayland"
-      ];
-    })
-  ];
+  environment.systemPackages =
+    with pkgs;
+    with pkgs-unstable;
+    [
+      vim
+      zsh
+      lshw
+      git
+      gcc
+      dig
+      gnupg
+      nixd
+      nixfmt-rfc-style
+      gvfs
+    ]
+    ++ [
+      # ---------------------------
+      (microsoft-edge.override {
+        commandLineArgs = [
+          "--ozone-platform=wayland"
+        ];
+      })
+    ];
 
   # Load nvidia driver for Xorg and Wayland
   services = {
@@ -112,7 +129,6 @@
       xkb.layout = "us";
       xkb.variant = "";
     };
-
 
     displayManager = {
       sddm = {

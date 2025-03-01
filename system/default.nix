@@ -1,9 +1,10 @@
-let 
+let
   laptop = [
     ./core
     ./hardware
     ./programs
   ];
-in {
+in
+{
   inherit laptop;
 }

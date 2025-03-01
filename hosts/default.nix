@@ -16,8 +16,8 @@
       inherit (import mod) laptop;
 
       # get these into the module system
-      specialArgs = { 
-        inherit inputs self; 
+      specialArgs = {
+        inherit inputs self;
         pkgs-unstable = import inputs.nixpkgs-unstable {
           system = "x86_64-linux";
           config.allowUnfree = true;
