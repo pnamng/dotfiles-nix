@@ -4,24 +4,24 @@
 }
 
 window#waybar {
-  background-color: #1e2326;
-  color: #d3c6aa;
+  background-color: #0f111b;
+  color: #ecf0c1;
 }
 
 #workspaces button {
-  color: #3d484d;
+  color: #1b1c36;
 }
 
 #workspaces button.active {
-  color: #d3c6aa;
+  color: #ecf0c1;
 }
 
 #workspaces button.active:hover {
-  color: #3d484d;
+  color: #1b1c36;
 }
 
 #workspaces button:hover {
-  background-color: #d3c6aa;
+  background-color: #ecf0c1;
 }
 
 #cpu,
@@ -36,13 +36,13 @@ window#waybar {
 }
 
 #battery.good {
-  color: #a7c080;
+  color: #5ccc96;
 }
 
 #battery.warning {
-  color: #dbbc7f;
+  color: #e39400;
 }
 
 #battery.critical {
-  color: #e69875;
+  color: #e33400;
 }
