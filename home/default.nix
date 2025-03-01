@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   pkgs-unstable,
   lib,
@@ -7,9 +6,9 @@
 }:
 
 {
-  imports = [
-    inputs.walker.homeManagerModules.default
-  ];
+  # imports = [
+  #   inputs.walker.homeManagerModules.default
+  # ];
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
@@ -70,6 +69,7 @@
       mpv
       darktable
       lmstudio
+      fuzzel
     ]
     ++ [
       # ---------------------------
@@ -95,42 +95,32 @@
     extraLuaConfig = lib.fileContents ./nvim/init.lua;
   };
 
-  home.file.".config/hypr/" = {
-    source = ./hypr;
-    recursive = false;
-  };
-
-  home.file.".config/waybar/" = {
-    source = ./waybar;
-    recursive = false;
-  };
-
-  home.file.".tmux.conf".source = ./.tmux.conf;
-  home.file.".config/fuzzel/".source = ./fuzzel;
-  home.file.".config/alacritty/".source = ./alacritty;
-  home.file.".config/nvim/" = {
-    source = ./nvim;
-    recursive = true;
-  };
-
-  programs.walker = {
-    enable = true;
-    runAsService = true;
-
-    # All options from the config.json can be used here.
-    config = {
-      search.placeholder = "Example";
-      ui.fullscreen = true;
-      list = {
-        height = 200;
-      };
-      websearch.prefix = "?";
-      switcher.prefix = "/";
+  home = {
+    file.".config/hypr/" = {
+      source = ./hypr;
+      recursive = false;
     };
+
+    file.".config/waybar/" = {
+      source = ./waybar;
+      recursive = false;
+    };
+
+    file.".tmux.conf".source = ./.tmux.conf;
+    file.".config/fuzzel/".source = ./fuzzel;
+    file.".config/alacritty/".source = ./alacritty;
+    file.".config/nvim/" = {
+      source = ./nvim;
+      recursive = true;
+    };
+
+    file.".config/mako/".source = ./mako;
+
+    # should not be modified i think
+    stateVersion = "24.05";
   };
 
-  # should not be modified i think
-  home.stateVersion = "24.05";
+  services.mako.enable = true;
 
   programs.home-manager.enable = true;
 }

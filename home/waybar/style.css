@@ -8,6 +8,10 @@ window#waybar {
   color: #ecf0c1;
 }
 
+#workspaces {
+  margin-right: 8px;
+}
+
 #workspaces button {
   color: #1b1c36;
 }
@@ -33,6 +37,10 @@ window#waybar {
 #pulseaudio,
 #network {
   padding: 0 8px;
+}
+
+#battery {
+  color: #5ccc96;
 }
 
 #battery.good {
