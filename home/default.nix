@@ -58,7 +58,7 @@
       hypridle
       swww
       waybar
-      # fuzzel
+      fuzzel
       nwg-look
 
       # productivity
@@ -69,7 +69,6 @@
       mpv
       darktable
       lmstudio
-      fuzzel
     ]
     ++ [
       # ---------------------------

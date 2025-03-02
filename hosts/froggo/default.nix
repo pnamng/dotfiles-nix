@@ -77,7 +77,14 @@
         zed-editor
         xfce.thunar
         qbittorrent
-        obsidian
+        (
+          obsidian.override {
+            commandLineArgs = [
+              "--ozone-platform=wayland"
+              "--enable-wayland-ime"
+            ];
+          }
+        )
         networkmanagerapplet
         shotwell
       ]
