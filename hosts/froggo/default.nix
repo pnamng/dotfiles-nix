@@ -114,6 +114,7 @@
       (microsoft-edge.override {
         commandLineArgs = [
           "--ozone-platform=wayland"
+          "--enable-wayland-ime"
         ];
       })
     ];

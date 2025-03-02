@@ -1,6 +1,6 @@
 * {
-  font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
-  font-size: 12px;
+  font-family: "Overpass Nerd Font", FontAwesome6Free;
+  font-size: 14px;
 }
 
 window#waybar {
@@ -36,6 +36,7 @@ window#waybar {
 #backlight,
 #pulseaudio,
 #network {
+  font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
   padding: 0 8px;
 }
 

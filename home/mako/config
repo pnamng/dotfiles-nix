@@ -4,10 +4,10 @@ text-color=#ecf0c1
 border-color=#7a5ccc
 border-size=2
 padding=10
-font=Sans 12
+font=JetBrainsMono Nerd Font 12
 
 # Default notification styling
-default-timeout=10000  # 10 seconds
+default-timeout=10000
 max-visible=3
 width=300
 height=100
@@ -27,10 +27,9 @@ text-color=#ecf0c1
 border-color=#ebeb94
 background-color=#0f111b
 text-color=#ebeb94
-highlight=#5ccc96  # Optional: for critical text highlights if supported
 
 # Grouping
-[group-by=app-name]
-background-color=#0f111b
-text-color=#c1b6ff
-border-color=#5b5b77
+# [group-by=app-name]
+# background-color=#0f111b
+# text-color=#c1b6ff
+# border-color=#5b5b77
