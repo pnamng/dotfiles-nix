@@ -13,7 +13,7 @@ window#waybar {
 }
 
 #workspaces button {
-  color: #1b1c36;
+  color: #686f9a;
 }
 
 #workspaces button.active {
@@ -21,7 +21,7 @@ window#waybar {
 }
 
 #workspaces button.active:hover {
-  color: #1b1c36;
+  color: #686f9a;
 }
 
 #workspaces button:hover {

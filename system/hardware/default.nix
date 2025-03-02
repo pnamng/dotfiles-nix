@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  services.blueman.enable = true;
-
   # Enable sound with pipewire.
   hardware = {
     # Bluetooth --------------------------------------------------

@@ -303,5 +303,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.cmd("colorscheme spaceduck")
-vim.cmd[[hi! VertSplit guifg=white guibg=white ctermfg=white ctermbg=white]]
+vim.cmd[[hi! WinSeparator guifg=#30365F]]
+-- vim.cmd[[hi! VertSplit guifg=black guibg=white ctermfg=white ctermbg=white]]
 -- vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]

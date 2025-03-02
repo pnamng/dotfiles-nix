@@ -6,14 +6,13 @@ vim.o.expandtab = true
 vim.o.relativenumber = true
 -- vim.wo.signcolumn = "no"
 vim.opt.fillchars = { 
-  -- horiz = '━', 
-  -- horizup = '┻', 
-  -- horizdown = '┳', 
-  -- vert = '┃', 
-  -- vert = '', 
-  -- vertleft = '┫', 
-  -- vertright = '┣', 
-  -- verthoriz = '╋', 
+  horiz = '━', 
+  horizup = '┻', 
+  horizdown = '┳', 
+  vert = '▌', 
+  vertleft = '┫', 
+  vertright = '┣', 
+  verthoriz = '╋', 
   eob = " "
 }
 
