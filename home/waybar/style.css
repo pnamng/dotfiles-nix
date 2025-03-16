@@ -8,10 +8,6 @@ window#waybar {
   color: #ecf0c1;
 }
 
-#workspaces {
-  margin-right: 8px;
-}
-
 #workspaces button {
   color: #686f9a;
 }
@@ -35,6 +31,7 @@ window#waybar {
 #tray,
 #backlight,
 #pulseaudio,
+#custom-media,
 #network {
   font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
   padding: 0 8px;
