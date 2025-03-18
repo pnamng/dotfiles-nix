@@ -80,6 +80,7 @@
       # })
       spotify
       alacritty
+      ghostty
     ];
 
   programs.git = {
@@ -114,6 +115,7 @@
     };
 
     file.".config/mako/".source = ./mako;
+    file.".config/fastfetch/".source = ./fastfetch;
 
     # should not be modified i think
     stateVersion = "24.05";

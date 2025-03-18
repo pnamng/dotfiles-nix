@@ -9,7 +9,7 @@ font=JetBrainsMono Nerd Font 12
 # Default notification styling
 default-timeout=10000
 max-visible=3
-width=300
+width=450
 height=100
 
 # Urgency levels
