@@ -116,6 +116,7 @@
 
     file.".config/mako/".source = ./mako;
     file.".config/fastfetch/".source = ./fastfetch;
+    file.".config/mpv/".source = ./mpv;
 
     # should not be modified i think
     stateVersion = "24.05";
