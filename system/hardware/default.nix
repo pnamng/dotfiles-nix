@@ -45,4 +45,10 @@
       outputs."eDP-1".edid = "edid.bin";
     };
   };
+
+  services = {
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+  };
 }
