@@ -93,6 +93,12 @@
     enable = true;
     package = pkgs-unstable.neovim-unwrapped;
     extraLuaConfig = lib.fileContents ./nvim/init.lua;
+    extraPackages = with pkgs; [
+      vue-language-server 
+      lua-language-server
+      typescript-language-server
+      pyright
+    ];
   };
 
   home = {
