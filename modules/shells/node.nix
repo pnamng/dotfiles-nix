@@ -10,9 +10,10 @@ pkgs.mkShellNoCC {
     cowsay
     lolcat
     nodejs_20
+    python310
   ];
 
-  GREETING = "Node 20";
+  GREETING = "Node 20 + Python 3.10";
 
   shellHook = ''
     echo $GREETING | cowsay | lolcat
