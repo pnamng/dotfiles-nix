@@ -33,7 +33,7 @@ return require("lazy").setup({
   {
     "sainnhe/everforest"
   },
-{ "pineapplegiant/spaceduck" },
+  { "pineapplegiant/spaceduck" },
   {
     'lukas-reineke/indent-blankline.nvim'
   },
