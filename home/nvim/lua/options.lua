@@ -18,7 +18,7 @@ vim.opt.fillchars = {
 }
 
 vim.opt.cursorline = true
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamed,unnamedplus"
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   desc = "Resize nvim-tree if nvim window got resized",

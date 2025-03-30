@@ -42,7 +42,7 @@ let
   ];
 
   unstablePkgs = with pkgs-unstable; [
-    spotifyd
+    spotify-player
   ]; 
 in
 {
