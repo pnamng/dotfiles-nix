@@ -39,19 +39,6 @@
     [
       # utils
       fastfetch
-      zip
-      xz
-      unzip
-      ripgrep
-      jq
-      eza
-      dconf
-      brightnessctl
-      glxinfo
-      openssl
-      bluetuith
-
-      lua
 
       # interfaces
       hyprlock
@@ -63,22 +50,8 @@
 
       # productivity
       tmux
-      lazygit
-      francis
-
-      mpv
-      darktable
-      lmstudio
     ]
     ++ [
-      # ---------------------------
-      # (microsoft-edge.override {
-      #   commandLineArgs = [
-      #     "--ozone-platform=wayland"
-      #     "--password-store=kwallet6"
-      #   ];
-      # })
-      spotify
       alacritty
       ghostty
     ];
@@ -94,10 +67,12 @@
     package = pkgs-unstable.neovim-unwrapped;
     extraLuaConfig = lib.fileContents ./nvim/init.lua;
     extraPackages = with pkgs; [
-      vue-language-server 
+      vue-language-server
       lua-language-server
       typescript-language-server
       pyright
+      nixd
+      nixfmt-rfc-style
     ];
   };
 

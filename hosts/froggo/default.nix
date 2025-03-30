@@ -1,5 +1,50 @@
 { pkgs, pkgs-unstable, ... }:
+let
+  stablePkgs = with pkgs; [
+    # essential
+    zip
+    xz
+    lua
+    unzip
+    ripgrep
+    jq
+    eza
+    dconf
+    brightnessctl
+    glxinfo
+    openssl
+    bluetuith
+    playerctl
 
+    xfce.thunar
+    networkmanagerapplet
+    shotwell
+
+    # dev
+    nodejs_20
+    zed-editor
+    qbittorrent
+    (obsidian.override {
+      commandLineArgs = [
+        "--ozone-platform=wayland"
+        "--enable-wayland-ime"
+      ];
+    })
+
+    lazygit
+    francis
+
+    mpv
+    darktable
+    lmstudio
+  ] ++ [
+    nodePackages_latest.typescript
+  ];
+
+  unstablePkgs = with pkgs-unstable; [
+    spotifyd
+  ]; 
+in
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -68,31 +113,7 @@
       "docker"
     ];
     shell = pkgs.zsh;
-    packages =
-      with pkgs;
-      with pkgs.nodePackages;
-      [
-        nodejs
-        playerctl
-        zed-editor
-        xfce.thunar
-        qbittorrent
-        (
-          obsidian.override {
-            commandLineArgs = [
-              "--ozone-platform=wayland"
-              "--enable-wayland-ime"
-            ];
-          }
-        )
-        networkmanagerapplet
-        shotwell
-      ]
-      ++ [
-        # node pkgs
-        typescript
-        typescript-language-server
-      ];
+    packages = stablePkgs ++ unstablePkgs;
   };
 
   # Allow unfree packages
@@ -112,9 +133,6 @@
       gcc
       dig
       gnupg
-      nixd
-      nixfmt-rfc-style
-      gvfs
     ]
     ++ [
       # ---------------------------
@@ -139,15 +157,25 @@
     };
 
     displayManager = {
-      sddm = {
-        enable = true;
-        extraPackages = [
-          pkgs.libsForQt5.qtgraphicaleffects
-          pkgs.libsForQt5.qtmultimedia
-        ];
-        theme = "${import ../../sddm-theme.nix { inherit pkgs; }}";
+      # sddm = {
+      #   enable = true;
+      #   extraPackages = [
+      #     pkgs.libsForQt5.qtgraphicaleffects
+      #     pkgs.libsForQt5.qtmultimedia
+      #   ];
+      #   theme = "${import ../../sddm-theme.nix { inherit pkgs; }}";
 
-        wayland.enable = true;
+      #   wayland.enable = true;
+      # };
+    };
+    greetd = {
+      enable = true;
+      vt = 2;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          user = "froggo";
+        };
       };
     };
   };
