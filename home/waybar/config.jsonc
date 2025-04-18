@@ -16,6 +16,7 @@
     ],
     "modules-center": [],
     "modules-right": [
+      "hyprland/submap",
       "cpu",
       "memory",
       "temperature",
