@@ -37,6 +37,8 @@ let
     mpv
     darktable
     lmstudio
+    grimblast
+    wl-clipboard
   ] ++ [
     nodePackages_latest.typescript
   ];
