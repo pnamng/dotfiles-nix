@@ -28,11 +28,11 @@ require('telescope').setup{
 
 -- lualine config
 require('lualine').setup({
-  options = {
-    theme = 'spaceduck',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-  }
+  -- options = {
+  --   theme = 'everforest',
+  --   component_separators = { left = '', right = ''},
+  --   section_separators = { left = '', right = ''},
+  -- }
 })
 
 -- indent-blankline config
