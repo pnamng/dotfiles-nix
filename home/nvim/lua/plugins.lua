@@ -41,7 +41,30 @@ return require("lazy").setup({
     'github/copilot.vim'
   },
   {
-    'neovim/nvim-lspconfig'
+    'neovim/nvim-lspconfig', -- REQUIRED: for native Neovim LSP integration
+    lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
+    dependencies = {
+      -- main one
+      { "ms-jpq/coq_nvim", branch = "coq" },
+
+      -- 9000+ Snippets
+      { "ms-jpq/coq.artifacts", branch = "artifacts" },
+
+      -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+      -- Need to **configure separately**
+      { 'ms-jpq/coq.thirdparty', branch = "3p" }
+      -- - shell repl
+      -- - nvim lua api
+      -- - scientific calculator
+      -- - comment banner
+      -- - etc
+    },
+    init = function()
+      vim.g.coq_settings = {
+        auto_start = true, -- if you want to start COQ at startup
+        -- Your COQ settings here
+      }
+    end,
   },
   {
     'windwp/nvim-autopairs',
@@ -61,11 +84,11 @@ return require("lazy").setup({
     'dense-analysis/ale'
   },
   -- for code completion
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/cmp-buffer'},
-  {'hrsh7th/cmp-path'},
-  {'hrsh7th/cmp-cmdline'},
-  {'hrsh7th/nvim-cmp'},
+  -- {'hrsh7th/cmp-nvim-lsp'},
+  -- {'hrsh7th/cmp-buffer'},
+  -- {'hrsh7th/cmp-path'},
+  -- {'hrsh7th/cmp-cmdline'},
+  -- {'hrsh7th/nvim-cmp'},
   {'akinsho/toggleterm.nvim', version = "*", config = true}
 })
 

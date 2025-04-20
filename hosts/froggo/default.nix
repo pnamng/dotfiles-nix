@@ -1,51 +1,53 @@
 { pkgs, pkgs-unstable, ... }:
 let
-  stablePkgs = with pkgs; [
-    # essential
-    zip
-    xz
-    lua
-    unzip
-    ripgrep
-    jq
-    eza
-    dconf
-    brightnessctl
-    glxinfo
-    openssl
-    bluetuith
-    playerctl
+  stablePkgs =
+    with pkgs;
+    [
+      # essential
+      zip
+      xz
+      lua
+      unzip
+      ripgrep
+      jq
+      eza
+      dconf
+      brightnessctl
+      glxinfo
+      openssl
+      bluetuith
+      playerctl
 
-    xfce.thunar
-    networkmanagerapplet
-    shotwell
+      xfce.thunar
+      networkmanagerapplet
+      shotwell
 
-    # dev
-    nodejs_20
-    zed-editor
-    qbittorrent
-    (obsidian.override {
-      commandLineArgs = [
-        "--ozone-platform=wayland"
-        "--enable-wayland-ime"
-      ];
-    })
+      # dev
+      nodejs_20
+      zed-editor
+      qbittorrent
+      (obsidian.override {
+        commandLineArgs = [
+          "--ozone-platform=wayland"
+          "--enable-wayland-ime"
+        ];
+      })
 
-    lazygit
-    francis
+      lazygit
+      francis
 
-    mpv
-    darktable
-    lmstudio
-    grimblast
-    wl-clipboard
-  ] ++ [
-    nodePackages_latest.typescript
-  ];
+      darktable
+      lmstudio
+      grimblast
+      wl-clipboard
+    ]
+    ++ [
+      nodePackages_latest.typescript
+    ];
 
   unstablePkgs = with pkgs-unstable; [
     spotify-player
-  ]; 
+  ];
 in
 {
   nix.settings.experimental-features = [
@@ -180,6 +182,9 @@ in
         };
       };
     };
+
+    # desktopManager.cosmic.enable = true;
+    # displayManager.cosmic-greeter.enable = true;
   };
 
   # List services that you want to enable:

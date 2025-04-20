@@ -28,7 +28,13 @@
       froggo = nixosSystem {
         inherit specialArgs;
         modules = laptop ++ [
-          ./froggo
+          # {
+          #   nix.settings = {
+          #     substituters = [ "https://cosmic.cachix.org/" ];
+          #     trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+          #   };
+          # }
+          # inputs.nixos-cosmic.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -37,6 +43,7 @@
               backupFileExtension = ".hm-backup";
             };
           }
+          ./froggo
         ];
       };
     };

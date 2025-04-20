@@ -50,5 +50,7 @@
     };
 
     walker.url = "github:abenz1267/walker";
+    # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 }
