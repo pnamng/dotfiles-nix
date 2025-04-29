@@ -5,21 +5,21 @@
 
   font = {
     normal = {
-      family = "JetBrainsMono Nerd Font";
+      family = "CascadiaCode";
       style = "Regular";
     };
     bold = {
-      family = "JetBrainsMono Nerd Font";
+      family = "CascadiaCode";
       style = "Bold";
     };
     italic = {
-      family = "JetBrainsMono Nerd Font";
+      family = "CascadiaCode";
       style = "Italic";
     };
     size = 11.0;
     offset = {
       x = 0;
-      y = -2;
+      y = 0;
     };
     glyph_offset = {
       x = 0;
@@ -28,7 +28,7 @@
   };
 
   window = {
-    opacity = 1.0;
+    opacity = 0.8;
     dynamic_padding = false;
     padding = {
       x = 4;
@@ -39,31 +39,31 @@
       lines = 40;
     };
   };
-
   colors = {
     primary = {
-      background = "#0f111b";
-      foreground = "#ecf0c1";
+      background = "#272e33";
+      foreground = "#d3c6aa";
     };
     normal = {
-      black = "#000000";
-      red = "#e33400";
-      green = "#5ccc96";
-      yellow = "#b3a1e6";
-      blue = "#00a3cc";
-      magenta = "#f2ce00";
-      cyan = "#7a5ccc";
-      white = "#686f9a";
+      black = "#414b50";
+      red = "#e67e80";
+      green = "#a7c080";
+      yellow = "#dbbc7f";
+      blue = "#7fbbb3";
+      magenta = "#d699b6";
+      cyan = "#83c092";
+      white = "#d3c6aa";
+
     };
     bright = {
-      black = "#686f9a";
-      red = "#e33400";
-      green = "#5ccc96";
-      yellow = "#b3a1e6";
-      blue = "#00a3cc";
-      magenta = "#f2ce00";
-      cyan = "#7a5ccc";
-      white = "#f0f1ce";
+      black = "#475258";
+      red = "#e67e80";
+      green = "#a7c080";
+      yellow = "#dbbc7f";
+      blue = "#7fbbb3";
+      magenta = "#d699b6";
+      cyan = "#83c092";
+      white = "#d3c6aa";
     };
   };
 }

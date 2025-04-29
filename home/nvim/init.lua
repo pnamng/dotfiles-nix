@@ -1,10 +1,10 @@
 require("plugins")
 require("options")
 require("keymaps")
--- require("lsp")
+require("lsp")
 
-vim.g.ale_fixers = {'prettier', 'eslint', 'gopls', 'nixfmt'}
-vim.g.ale_fix_on_save = false 
+vim.g.ale_fixers = { 'prettier', 'eslint', 'gopls', 'nixfmt' }
+vim.g.ale_fix_on_save = false
 
 require('nvim-ts-autotag').setup()
 
@@ -13,7 +13,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-require('telescope').setup{
+require('telescope').setup {
   pickers = {
     find_files = {
       no_ignore = false,
@@ -28,11 +28,11 @@ require('telescope').setup{
 
 -- lualine config
 require('lualine').setup({
-  -- options = {
-  --   theme = 'everforest',
-  --   component_separators = { left = '', right = ''},
-  --   section_separators = { left = '', right = ''},
-  -- }
+  options = {
+    theme = 'everforest',
+    -- component_separators = { left = '', right = ''},
+    -- section_separators = { left = '', right = ''},
+  }
 })
 
 -- indent-blankline config
@@ -59,8 +59,8 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 end)
 
 vim.g.rainbow_delimiters = { highlight = highlight }
-require("ibl").setup { 
-  scope = { highlight = highlight } ,
+require("ibl").setup {
+  scope = { highlight = highlight },
   indent = {
     char = "│",
   }
@@ -69,7 +69,7 @@ require("ibl").setup {
 hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
 -- tree-sitter configs
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "vue" },
 
@@ -178,9 +178,9 @@ require("nvim-tree").setup({
   }
 })
 
--- cmp setup 
+-- cmp setup
 -- local cmp = require'cmp'
--- 
+--
 -- cmp.setup({
 --   snippet = {
 --     -- REQUIRED - you must specify a snippet engine
@@ -212,7 +212,7 @@ require("nvim-tree").setup({
 --     { name = 'buffer' },
 --   })
 -- })
--- 
+--
 -- -- Set configuration for specific filetype.
 -- cmp.setup.filetype('gitcommit', {
 --   sources = cmp.config.sources({
@@ -221,7 +221,7 @@ require("nvim-tree").setup({
 --     { name = 'buffer' },
 --   })
 -- })
--- 
+--
 -- -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 -- cmp.setup.cmdline({ '/', '?' }, {
 --   mapping = cmp.mapping.preset.cmdline(),
@@ -229,7 +229,7 @@ require("nvim-tree").setup({
 --     { name = 'buffer' }
 --   }
 -- })
--- 
+--
 -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- cmp.setup.cmdline(':', {
 --   mapping = cmp.mapping.preset.cmdline(),
@@ -244,7 +244,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
     local params = vim.lsp.util.make_range_params()
-    params.context = {only = {"source.organizeImports"}}
+    params.context = { only = { "source.organizeImports" } }
     -- buf_request_sync defaults to a 1000ms timeout. Depending on your
     -- machine and codebase, you may want longer. Add an additional
     -- argument after params if you find that you have to write the file
@@ -259,7 +259,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end
       end
     end
-    vim.lsp.buf.format({async = false})
+    vim.lsp.buf.format({ async = false })
   end
 })
 
@@ -302,7 +302,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.cmd("colorscheme spaceduck")
-vim.cmd[[hi! WinSeparator guifg=#30365F]]
+require("everforest").setup({
+  background = "hard",
+  transparent_background_level = 1,
+  italics = true,
+  disable_italic_comments = false,
+  sign_column_background = "none",
+  ui_contrast = "low",
+  dim_inactive_windows = false,
+  diagnostic_text_highlight = false,
+  diagnostic_virtual_text = "coloured",
+  diagnostic_line_highlight = false,
+  spell_foreground = false,
+  show_eob = true,
+  float_style = "bright",
+  inlay_hints_background = "none",
+  -- colours_override = function(palette) end,
+})
+
+require("everforest").load()
+
+-- vim.cmd("colorscheme everforest")
+-- vim.cmd [[hi! WinSeparator guifg=#30365F]]
 -- vim.cmd[[hi! VertSplit guifg=black guibg=white ctermfg=white ctermbg=white]]
 -- vim.cmd[[hi! TelescopeBorder guifg=none guibg=none ctermfg=none ctermbg=none]]

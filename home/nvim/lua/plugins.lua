@@ -13,7 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.4',
     dependencies = {
       'nvim-lua/plenary.nvim',
     }
@@ -42,13 +43,13 @@ return require("lazy").setup({
   },
   {
     'neovim/nvim-lspconfig', -- REQUIRED: for native Neovim LSP integration
-    lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
+    lazy = false,            -- REQUIRED: tell lazy.nvim to start this plugin at startup
     dependencies = {
       -- main one
-      { "ms-jpq/coq_nvim", branch = "coq" },
+      { "ms-jpq/coq_nvim",       branch = "coq" },
 
       -- 9000+ Snippets
-      { "ms-jpq/coq.artifacts", branch = "artifacts" },
+      { "ms-jpq/coq.artifacts",  branch = "artifacts" },
 
       -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
       -- Need to **configure separately**
@@ -61,7 +62,7 @@ return require("lazy").setup({
     },
     init = function()
       vim.g.coq_settings = {
-        auto_start = true, -- if you want to start COQ at startup
+        auto_start = 'shut-up', -- if you want to start COQ at startup
         -- Your COQ settings here
       }
     end,
@@ -89,7 +90,11 @@ return require("lazy").setup({
   -- {'hrsh7th/cmp-path'},
   -- {'hrsh7th/cmp-cmdline'},
   -- {'hrsh7th/nvim-cmp'},
-  {'akinsho/toggleterm.nvim', version = "*", config = true}
+  { 'akinsho/toggleterm.nvim', version = "*", config = true },
+  {
+    "neanias/everforest-nvim",
+    version = false,
+    lazy = false,
+    priority = 1000,
+  }
 })
-
-

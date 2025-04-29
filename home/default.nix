@@ -9,6 +9,8 @@
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./apps/gtk.nix
+    ./apps/qt.nix
   ];
 
   # define color scheme
@@ -17,42 +19,12 @@
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
-  # themes --------------------
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      name = "Bibata-Modern-Ice";
-      package = pkgs.bibata-cursors;
-    };
-    theme = {
-      package = pkgs.everforest-gtk-theme;
-      name = "Everforest-Dark-B-LB";
-    };
-    iconTheme = {
-      name = "ePapirus";
-    };
-  };
-
-  qt = {
-    enable = true;
-  };
-
   home.packages =
     with pkgs;
     with pkgs-unstable;
     [
-      # utils
-      # fastfetch
-
-      # interfaces
-      # hyprlock
-      # hypridle
       swww
-      # waybar
-      # fuzzel
       nwg-look
-
-      # productivity
       tmux
     ]
     ++ [
@@ -74,7 +46,7 @@
 
     neovim = {
       enable = true;
-      package = pkgs-unstable.neovim-unwrapped;
+      package = pkgs.neovim-unwrapped;
       extraLuaConfig = lib.fileContents ./nvim/init.lua;
       extraPackages = with pkgs; [
         vue-language-server
@@ -123,12 +95,10 @@
 
   services = {
     mako = import ./apps/mako.nix;
-
     hyprpaper = {
       enable = true;
       settings = import ./apps/hyprpaper.nix;
     };
-
     hypridle = {
       enable = true;
       settings = import ./apps/hypridle.nix;
@@ -144,6 +114,10 @@
       ".config/hypr/modules" = {
         source = ./hypr/modules;
         recursive = false;
+      };
+
+      ".config/nvim/lua" = {
+        source = ./nvim/lua;
       };
 
       ".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;

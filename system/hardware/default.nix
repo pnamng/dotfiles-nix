@@ -50,5 +50,10 @@
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
+    logind = {
+      lidSwitch = "ignore"; 
+      lidSwitchExternalPower = "ignore"; 
+      lidSwitchDocked = "ignore"; 
+    };
   };
 }

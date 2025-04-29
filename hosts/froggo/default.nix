@@ -1,4 +1,5 @@
 { pkgs, pkgs-unstable, ... }:
+
 let
   stablePkgs =
     with pkgs;
@@ -57,10 +58,9 @@ in
 
   imports = [
     ./hardware-configuration.nix
-    # ../../system
   ];
 
-  networking.hostName = "froggo"; # Define your hostname.
+  networking.hostName = "froggo";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Ho_Chi_Minh";
@@ -198,7 +198,6 @@ in
     };
   };
 
-  # ---------------------------------------------------------------------------
   virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
 
