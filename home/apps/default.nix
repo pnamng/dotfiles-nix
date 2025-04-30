@@ -4,6 +4,8 @@
     ./fastfetch.nix
     ./fuzzel.nix
     ./gtk.nix
+    ./hyprland.nix
+    ./hyprpaper.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./mako.nix

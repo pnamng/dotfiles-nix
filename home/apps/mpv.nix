@@ -1,3 +1,7 @@
 {
-  ao = "pulse";
+  programs.mpv = {
+    config = {
+      ao = "pulse";
+    };
+  };
 }

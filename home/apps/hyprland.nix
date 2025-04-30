@@ -1,12 +1,9 @@
-{ config, pkgs-unstable, ... }:
+{ config, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs-unstable.hyprland;
-    portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
     settings = {
       source = [
-        "~/.config/hypr/themes/spaceduck.conf"
         "~/.config/hypr/modules/variables.conf"
         "~/.config/hypr/modules/env.conf"
         "~/.config/hypr/modules/bindings.conf"
@@ -33,43 +30,35 @@
         "[workspace 6 silent] qbittorrent"
         "[workspace 9 silent] alacritty -e spotify_player"
       ];
-      general = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
+      general = {
         gaps_in = 6;
         gaps_out = "12,12,12,12";
         border_size = 2;
-        col.active_border = "#${config.colorScheme.palette.base0B}ee #${config.colorScheme.palette.base0C}ee 45deg";
-        # col.inactive_border = rgba(595959aa)
+        "col.active_border" =
+          "0xee${config.colorScheme.palette.base0B} 0xee${config.colorScheme.palette.base0C} 45deg";
+        "col.inactive_border" = "0xee${config.colorScheme.palette.base01}";
 
         layout = "dwindle";
-
-        # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
         allow_tearing = false;
       };
-      # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+
       input = {
         kb_layout = "us";
         # kb_variant =
         # kb_model =
         # kb_options =
         # kb_rules =
-
         follow_mouse = 2;
         numlock_by_default = false;
-
         touchpad = {
           natural_scroll = "yes";
         };
-
-        sensitivity = 0; # -1.0 to 1.0, 0 means no modification.
+        sensitivity = 0;
       };
 
       decoration = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
         rounding = 4;
-
         blur = {
           enabled = true;
           size = 10;
@@ -79,8 +68,6 @@
 
       animations = {
         enabled = "yes";
-
-        # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
@@ -111,19 +98,15 @@
       };
 
       gestures = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
         workspace_swipe = "off";
       };
 
       misc = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        force_default_wallpaper = 1; # Set to 0 or 1 to disable the anime mascot wallpapers
+        force_default_wallpaper = 1;
         disable_hyprland_logo = 1;
         focus_on_activate = true;
       };
 
-      # Example per-device config
-      # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
       device = {
         name = "epic-mouse-v1";
         sensitivity = -0.5;

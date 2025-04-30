@@ -52,19 +52,19 @@
       }
 
       #battery {
-        color: #${config.colorScheme.palette.base0D};
+        color: #${config.colorScheme.palette.base0B};
       }
 
       #battery.good {
-        color: #${config.colorScheme.palette.base0D};
+        color: #${config.colorScheme.palette.base0B};
       }
 
       #battery.warning {
-        color: #${config.colorScheme.palette.base0C};
+        color: #${config.colorScheme.palette.base0E};
       }
 
       #battery.critical {
-        color: #${config.colorScheme.palette.base0E};
+        color: #${config.colorScheme.palette.base08};
       }
 
       #submap.resize {
