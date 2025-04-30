@@ -9,12 +9,11 @@
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default
-    ./apps/gtk.nix
-    ./apps/qt.nix
+    ./apps
   ];
 
   # define color scheme
-  colorScheme = inputs.nix-colors.colorSchemes.dracula;
+  colorScheme = inputs.nix-colors.colorSchemes.everforest-dark-hard;
 
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
@@ -58,21 +57,11 @@
       ];
     };
 
-    alacritty = {
-      enable = true;
-      package = pkgs-unstable.alacritty;
-      settings = import ./apps/alacritty.nix;
-    };
-
-    fastfetch = {
-      enable = true;
-      settings = import ./apps/fastfetch.nix;
-    };
-
-    fuzzel = {
-      enable = true;
-      settings = import ./apps/fuzzel.nix;
-    };
+    
+    # fuzzel = {
+    #   enable = true;
+    #   settings = import ./apps/fuzzel.nix;
+    # };
 
     mpv = {
       enable = true;
@@ -84,11 +73,7 @@
       settings = import ./apps/hyprlock.nix;
     };
 
-    waybar = {
-      enable = true;
-      settings = import ./apps/waybar.nix;
-      style = builtins.readFile ./waybar/style.css;
-    };
+
 
     home-manager.enable = true;
   };
