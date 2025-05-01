@@ -12,7 +12,7 @@
     ./apps
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
+  colorScheme = inputs.nix-colors.colorSchemes.everforest-dark-hard;
 
   # define color scheme
   # colorScheme = {
@@ -43,7 +43,7 @@
   home.homeDirectory = "/home/froggo";
 
   home.packages = with pkgs-unstable; [
-    swww
+    # swww
     nwg-look
     tmux
     ghostty

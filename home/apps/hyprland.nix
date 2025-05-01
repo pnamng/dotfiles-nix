@@ -1,7 +1,9 @@
-{ config, ... }:
+{ config, pkgs-unstable, ... }:
 {
+  wayland.windowManager.hyprland.portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
   wayland.windowManager.hyprland = {
     enable = true;
+    package = pkgs-unstable.hyprland;
     settings = {
       source = [
         "~/.config/hypr/modules/variables.conf"
@@ -35,10 +37,8 @@
         gaps_in = 6;
         gaps_out = "12,12,12,12";
         border_size = 2;
-        "col.active_border" =
-          "0xee${config.colorScheme.palette.base0B} 0xee${config.colorScheme.palette.base0C} 45deg";
-        "col.inactive_border" = "0xee${config.colorScheme.palette.base01}";
-
+        "col.active_border" = "0xee${config.colorScheme.palette.base0B} 0xee${config.colorScheme.palette.base0B} 45deg";
+        "col.inactive_border" = "0xee${config.colorScheme.palette.base03}";
         layout = "dwindle";
         allow_tearing = false;
       };

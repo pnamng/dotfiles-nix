@@ -7,11 +7,11 @@
       # splash_offset = 2.0;
 
       preload = [
-        "~/.dotfiles/walls/gruvbox-dark-rainbow.png"
+        "~/.dotfiles/walls/red-white.jpg"
       ];
 
       wallpaper = [
-        ",~/.dotfiles/walls/gruvbox-dark-rainbow.png "
+        ",~/.dotfiles/walls/red-white.jpg"
       ];
     };
   };

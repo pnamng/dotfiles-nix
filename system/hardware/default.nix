@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   # Enable sound with pipewire.
   hardware = {
@@ -51,9 +51,9 @@
     gvfs.enable = true;
     udisks2.enable = true;
     logind = {
-      lidSwitch = "ignore"; 
-      lidSwitchExternalPower = "ignore"; 
-      lidSwitchDocked = "ignore"; 
+      lidSwitch = "ignore";
+      lidSwitchExternalPower = "ignore";
+      lidSwitchDocked = "ignore";
     };
   };
 }

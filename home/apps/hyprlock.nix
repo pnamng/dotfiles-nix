@@ -1,3 +1,7 @@
+{ config, pkgs-unstable, ... }:
+let
+  lock_background = "~/.dotfiles/walls/open-ceiling.png";
+in
 {
   programs.hyprlock = {
     enable = true;
@@ -5,31 +9,20 @@
       background = [
         {
           monitor = "";
-          path = "$lock-background"; # only png supported for now
+          path = "${lock_background}";
           color = "rgba(25, 20, 20, 1.0)";
           blur_passes = 0; # 0 disables blurring
           blur_size = 7;
           noise = 0.0117;
           contrast = 0.8916;
           brightness = 0.8172;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
-        }
-      ];
-
-      input-field = [
-        {
-          monitor = "";
-          size = "720, 120";
-          outline_thickness = 0;
-          dots_text_format = "*";
-          dots_size = 1; # Scale of input-field height, 0.2 - 0.8
+          vibrancy = 0.1696; # Scale of input-field height, 0.2 - 0.8
           dots_spacing = 0.15; # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = "center";
           dots_rounding = -1; # -1 default circle, -2 follow input-field rounding
           outer_color = "rgba(15151500)";
           inner_color = "rgba(200, 200, 200, 0)";
-          font_color = "$secondary-text";
+          font_color = "rgb(${config.colorScheme.palette.base05})";
           fade_on_empty = true;
           fade_timeout = 1000; # Milliseconds before fade_on_empty is triggered.
           placeholder_text = ""; # Text rendered in the input box when it's empty.
@@ -44,6 +37,38 @@
           bothlock_color = -1; # when both locks are active
           invert_numlock = false;
           swap_font_color = false;
+          position = "0, 0";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+
+      "input-field" = [
+        {
+          size = "720, 120";
+          outline_thickness = 0;
+          dots_text_format = "*";
+          dots_size = 1;
+          dots_spacing = 0.15;
+          dots_center = "center";
+          dots_rounding = -1;
+          outer_color = "rgba(15151500)";
+          inner_color = "rgba(200, 200, 200, 0)";
+          font_color = "rgb(${config.colorScheme.palette.base05})";
+          fade_on_empty = true;
+          fade_timeout = 1000;
+          placeholder_text = "";
+          hide_input = false;
+          check_color = "rgb(204, 136, 34)";
+          fail_color = "rgba(204, 34, 34, 0)";
+          fail_text = "";
+          fail_transition = 300;
+          capslock_color = -1;
+          numlock_color = -1;
+          bothlock_color = -1;
+          invert_numlock = false;
+          swap_font_color = false;
+
           position = "0, 0";
           halign = "center";
           valign = "center";
@@ -67,7 +92,7 @@
           monitor = "";
           text = ''cmd[update:1000] echo "<span>$(date +%H:%M)</span>"'';
           text_align = "right";
-          color = "$primary-text";
+          color = "rgb(${config.colorScheme.palette.base05})";
           font_size = 84;
           font_family = "JetBrainsMono Nerd Font";
           rotate = 0; # degrees, counter-clockwise
@@ -79,7 +104,7 @@
           monitor = "";
           text = ''cmd[update:1000] echo "<span>$(date +%d-%m-%y)</span>"'';
           text_align = "center";
-          color = "$secondary-text";
+          color = "rgb(${config.colorScheme.palette.base05})";
           font_size = 24;
           font_family = "JetBrainsMono Nerd Font";
           rotate = 0; # degrees, counter-clockwise
