@@ -1,9 +1,7 @@
-{ config, pkgs-unstable, ... }:
+{ config, ... }:
 {
-  wayland.windowManager.hyprland.portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs-unstable.hyprland;
     settings = {
       source = [
         "~/.config/hypr/modules/variables.conf"
@@ -62,7 +60,7 @@
         blur = {
           enabled = true;
           size = 10;
-          passes = 2;
+          passes = 3;
         };
       };
 

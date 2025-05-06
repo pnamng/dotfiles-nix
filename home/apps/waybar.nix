@@ -25,16 +25,16 @@
       }
 
       #workspaces button.active {
-        color: #${config.colorScheme.palette.base05};
+        background-color: #${config.colorScheme.palette.base05};
+        color: #${config.colorScheme.palette.base02};
       }
 
       #workspaces button.active:hover {
-        font-weight: bold;
         color: #${config.colorScheme.palette.base0D};
       }
 
       #workspaces button:hover {
-        background-color: #${config.colorScheme.palette.base05};
+        color: #${config.colorScheme.palette.base05};
       }
 
       #cpu,
@@ -75,6 +75,10 @@
         font-size: 16px;
         padding: 0 8px;
       }
+
+      #clock {
+        font-weight: bold;
+      }
     '';
     settings = {
       mainBar = {
@@ -88,6 +92,7 @@
         margin-left = 12;
         modules-left = [
           "custom/nix"
+          "clock"
           "custom/media"
         ];
         modules-center = [
@@ -103,7 +108,7 @@
           "network"
           "pulseaudio"
           "backlight"
-          "clock"
+          "tray"
         ];
         "hyprland/workspaces" = {
           align = "center";
@@ -140,7 +145,7 @@
         };
         "custom/media" = {
           format = { };
-          max-length = 120;
+          max-length = 60;
           format-icons = {
             spotify = " ";
             default = "";
@@ -294,8 +299,8 @@
               ""
             ];
           };
-          on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+          on-click-right = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
         };
       };
     };

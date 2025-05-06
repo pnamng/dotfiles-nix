@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       logo = {
-        type = "builtin";
+        type = "none";
         padding = {
           top = 1;
         };

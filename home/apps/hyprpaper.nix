@@ -7,11 +7,11 @@
       # splash_offset = 2.0;
 
       preload = [
-        "~/.dotfiles/walls/red-white.jpg"
+        "~/.dotfiles/walls/everforest-stairs.jpeg"
       ];
 
       wallpaper = [
-        ",~/.dotfiles/walls/red-white.jpg"
+        ",~/.dotfiles/walls/everforest-stairs.jpeg"
       ];
     };
   };

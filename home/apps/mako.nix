@@ -7,10 +7,11 @@
     textColor = "#${config.colorScheme.palette.base05}";
     borderColor = "#${config.colorScheme.palette.base0D}";
     borderSize = 2;
+    borderRadius = 20;
     padding = "10";
-    defaultTimeout = 10000; # 10 seconds
+    defaultTimeout = 3000;
     maxVisible = 3;
-    width = 450;
+    width = 400;
     height = 100;
     extraConfig = ''
       [urgency=low]
