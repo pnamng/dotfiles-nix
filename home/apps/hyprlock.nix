@@ -1,4 +1,4 @@
-{ config, pkgs-unstable, ... }:
+{ config, ... }:
 let
   lock_background = "~/.dotfiles/walls/open-ceiling.png";
 in

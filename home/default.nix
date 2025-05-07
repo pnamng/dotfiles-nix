@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   lib,
   inputs,
   ...
@@ -42,7 +41,7 @@
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
-  home.packages = with pkgs-unstable; [
+  home.packages = with pkgs; [
     # swww
     nwg-look
     tmux

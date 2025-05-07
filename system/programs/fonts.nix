@@ -7,13 +7,9 @@
       font-awesome
       cascadia-code
       noto-fonts-cjk-sans
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "JetBrainsMono"
-          "Overpass"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.overpass
     ];
     fontconfig = {
       cache32Bit = true;

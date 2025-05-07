@@ -1,7 +1,7 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 let
-  stablePkgs =
+  packages =
     with pkgs;
     [
       # essential
@@ -41,14 +41,11 @@ let
       lmstudio
       grimblast
       wl-clipboard
+      spotify-player
     ]
     ++ [
       nodePackages_latest.typescript
     ];
-
-  unstablePkgs = with pkgs-unstable; [
-    spotify-player
-  ];
 in
 {
   nix.settings.experimental-features = [
@@ -87,7 +84,7 @@ in
     ];
   };
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -117,7 +114,7 @@ in
       "docker"
     ];
     shell = pkgs.zsh;
-    packages = stablePkgs ++ unstablePkgs;
+    packages = packages;
   };
 
   # Allow unfree packages
@@ -128,7 +125,6 @@ in
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages =
     with pkgs;
-    with pkgs-unstable;
     [
       vim
       zsh
