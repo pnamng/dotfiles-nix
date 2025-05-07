@@ -14,13 +14,13 @@
       }
 
       window#waybar > box {
-        padding: 0 8px;
+        padding: 4px;
         border-radius: 24px;
       }
 
       #workspaces button {
         padding: 0 4px;
-        margin: 4px 2px;
+        margin: 0 2px;
         color: #${config.colorScheme.palette.base0D};
       }
 
@@ -78,6 +78,8 @@
 
       #clock {
         font-weight: bold;
+        border: 1px solid #${config.colorScheme.palette.base05};
+        border-radius: 8px;
       }
     '';
     settings = {
