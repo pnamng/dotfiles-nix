@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  # fonts --------------------------------
   fonts = {
     packages = with pkgs; [
       inter
