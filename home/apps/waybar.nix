@@ -44,9 +44,9 @@
       #tray,
       #backlight,
       #pulseaudio,
-      #custom-media,
       #submap,
-      #network {
+      #network 
+      #custom-media {
         font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
         padding: 0 8px;
       }
@@ -73,7 +73,12 @@
 
       #custom-nix {
         font-size: 16px;
-        padding: 0 8px;
+        padding: 0 12px;
+      }
+
+      #custom-media {
+        font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
+        padding: 0 12px;
       }
 
       #clock {
@@ -190,11 +195,12 @@
         };
         tray = {
           icon-size = 16;
-          spacing = 10;
+          spacing = 8;
         };
         clock = {
           timezone = "Asia/Ho_Chi_Minh";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format = "{:%H:%M %Y.%m.%d}";
           format-alt = "{:%Y-%m-%d}";
           calendar = {
             mode = "year";
