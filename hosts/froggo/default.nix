@@ -42,6 +42,8 @@ let
       grimblast
       wl-clipboard
       spotify-player
+      
+      hyprpolkitagent
     ]
     ++ [
       nodePackages_latest.typescript

@@ -19,16 +19,14 @@
       ];
 
       exec-once = [
-        "swww-daemon"
         "waybar"
         "hyprpaper"
         "hypridle"
         "fcitx5"
         "nm-applet"
-        "[workspace 1 silent] obsidian"
         "[workspace 4 silent] alacritty"
         "[workspace 6 silent] qbittorrent"
-        "[workspace 9 silent] alacritty -e spotify_player"
+        "[workspace 9 silent] alacritty --hold -e spotify_player"
       ];
 
       general = {

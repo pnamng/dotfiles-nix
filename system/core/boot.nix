@@ -8,18 +8,18 @@
 
     ## Kernel
     kernelPackages = pkgs.linuxPackages;
-      # pkgs.linuxPackagesFor (
-      #   pkgs.linux_6_12.override {
-      #     argsOverride = rec {
-      #       src = pkgs.fetchurl {
-      #         url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-      #         sha256 = "15xjjn8ff7g9q0ljr2g8k098ppxnpvxlgv22rdrplls8sxg6wlaa";
-      #       };
-      #       version = "6.12.10";
-      #       modDirVersion = "6.12.10";
-      #     };
-      #   }
-      # );
+    # pkgs.linuxPackagesFor (
+    #   pkgs.linux_6_12.override {
+    #     argsOverride = rec {
+    #       src = pkgs.fetchurl {
+    #         url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
+    #         sha256 = "15xjjn8ff7g9q0ljr2g8k098ppxnpvxlgv22rdrplls8sxg6wlaa";
+    #       };
+    #       version = "6.12.10";
+    #       modDirVersion = "6.12.10";
+    #     };
+    #   }
+    # );
     initrd.kernelModules = [
       "amdgpu"
       "nvidia"
@@ -33,5 +33,9 @@
       # "nvidia-drm.modeset=1"
       # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
+
+    extraModprobeConfig = ''
+      options ideapad_laptop no_bt_rfkill=1
+    '';
   };
 }
