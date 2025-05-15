@@ -7,8 +7,7 @@
   programs.alacritty = {
     enable = true;
     package = pkgs.alacritty;
-    settings = {
-      env = {
+    settings = { env = {
         TERM = "xterm-256color";
       };
 
@@ -40,8 +39,8 @@
         opacity = 0.8;
         dynamic_padding = false;
         padding = {
-          x = 4;
-          y = 4;
+          x = 10;
+          y = 10;
         };
         dimensions = {
           columns = 120;
@@ -55,12 +54,12 @@
         };
         normal = {
           black = "#${config.colorScheme.palette.base05}";
-          red = "#${config.colorScheme.palette.base08}";
-          green = "#${config.colorScheme.palette.base0B}";
+          red = "#${config.colorScheme.palette.base0E}";
+          green = "#${config.colorScheme.palette.base0D}";
           yellow = "#${config.colorScheme.palette.base0A}";
-          blue = "#${config.colorScheme.palette.base0C}";
+          blue = "#${config.colorScheme.palette.base08}";
           magenta = "#${config.colorScheme.palette.base09}";
-          cyan = "#${config.colorScheme.palette.base0D}";
+          cyan = "#${config.colorScheme.palette.base0B}";
           white = "#${config.colorScheme.palette.base03}";
         };
         bright = {

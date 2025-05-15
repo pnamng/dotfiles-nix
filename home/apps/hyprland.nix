@@ -32,7 +32,7 @@
       general = {
         gaps_in = 6;
         gaps_out = "12,12,12,12";
-        border_size = 2;
+        border_size = 1;
         "col.active_border" = "0xee${config.colorScheme.palette.base0B} 0xee${config.colorScheme.palette.base0B} 45deg";
         "col.inactive_border" = "0xee${config.colorScheme.palette.base03}";
         layout = "dwindle";
@@ -57,7 +57,7 @@
         rounding = 4;
         blur = {
           enabled = true;
-          size = 10;
+          size = 12;
           passes = 3;
         };
       };

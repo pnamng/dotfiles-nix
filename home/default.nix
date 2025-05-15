@@ -11,14 +11,13 @@
     ./apps
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.everforest-dark-hard;
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-hard;
 
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
 
   home.packages = with pkgs; [
     nwg-look
-    tmux
   ];
 
   programs = {
@@ -61,8 +60,6 @@
       ".config/nvim/lua" = {
         source = ./nvim/lua;
       };
-
-      ".tmux.conf".source = ./.tmux.conf;
     };
 
     # should not be modified i think

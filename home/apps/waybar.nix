@@ -9,13 +9,11 @@
       }
 
       window#waybar {
-        border-radius: 12px;
         background-color: #${config.colorScheme.palette.base00};
       }
 
       window#waybar > box {
         padding: 4px;
-        border-radius: 24px;
       }
 
       #workspaces button {
@@ -93,10 +91,10 @@
         position = "bottom";
         height = 24;
         spacing = 0;
-        margin-bottom = 8;
+        margin-bottom = 0;
         margin-top = 0;
-        margin-right = 12;
-        margin-left = 12;
+        margin-right = 0;
+        margin-left = 0;
         modules-left = [
           "custom/nix"
           "clock"

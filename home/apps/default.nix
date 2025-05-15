@@ -12,5 +12,6 @@
     ./mpv.nix
     ./qt.nix
     ./waybar.nix
+    ./tmux.nix
   ];
 }

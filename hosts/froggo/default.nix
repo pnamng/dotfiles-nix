@@ -25,7 +25,6 @@ let
 
       # dev
       nodejs_20
-      zed-editor
       qbittorrent
       (obsidian.override {
         commandLineArgs = [
@@ -33,12 +32,9 @@ let
           "--enable-wayland-ime"
         ];
       })
-
+      unityhub
       lazygit
-      francis
 
-      darktable
-      lmstudio
       grimblast
       wl-clipboard
       spotify-player

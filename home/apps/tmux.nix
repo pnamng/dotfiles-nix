@@ -1,5 +1,6 @@
 {
-  programs.tmux.enable = true;
+  programs.tmux = {
+  enable = true;
   extraConfig = ''
     # split panes using | and -
     bind | split-window -h
@@ -106,4 +107,5 @@
     set -g window-status-format "#[fg=#{@everforest_grey0},bg=#{@everforest_bg0}] #I  #[fg=#{@everforest_grey0},bg=#{@everforest_bg0}]#W "
     set -g window-status-current-format "#[fg=#{@everforest_bg0},bg=#{@everforest_bg_green}]#[fg=#{@everforest_fg},bg=#{@everforest_bg_green}] #I  #[fg=#{@everforest_fg},bg=#{@everforest_bg_green},bold]#W #[fg=#{@everforest_bg_green},bg=#{@everforest_bg0},nobold]"
   '';
+  };
 }
