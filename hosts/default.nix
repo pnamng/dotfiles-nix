@@ -25,6 +25,7 @@
         inherit specialArgs;
         modules = laptop ++ [
           inputs.home-manager.nixosModules.home-manager
+          inputs.nix-index-database.nixosModules.nix-index
           {
             home-manager = {
               users.froggo = homeImports;

@@ -43,7 +43,7 @@
       #backlight,
       #pulseaudio,
       #submap,
-      #network 
+      #network,
       #custom-media {
         font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
         padding: 0 8px;
@@ -75,7 +75,6 @@
       }
 
       #custom-media {
-        font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
         padding: 0 12px;
       }
 

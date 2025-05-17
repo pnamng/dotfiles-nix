@@ -48,7 +48,16 @@
     };
 
     walker.url = "github:abenz1267/walker";
-    # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     nix-colors.url = "github:misterio77/nix-colors";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    hy3 = {
+      url = "github:outfoxxed/hy3";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 }

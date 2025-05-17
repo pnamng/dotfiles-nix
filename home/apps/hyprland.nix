@@ -1,7 +1,12 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
+    extraConfig = ''
+      plugin = ${inputs.hy3.packages.x86_64-linux.hy3}/lib/libhy3.so
+    '';
     settings = {
       source = [
         "~/.config/hypr/modules/variables.conf"
@@ -33,9 +38,10 @@
         gaps_in = 6;
         gaps_out = "12,12,12,12";
         border_size = 1;
-        "col.active_border" = "0xee${config.colorScheme.palette.base0B} 0xee${config.colorScheme.palette.base0B} 45deg";
+        "col.active_border" =
+          "0xee${config.colorScheme.palette.base0B} 0xee${config.colorScheme.palette.base0B} 45deg";
         "col.inactive_border" = "0xee${config.colorScheme.palette.base03}";
-        layout = "dwindle";
+        layout = "hy3";
         allow_tearing = false;
       };
 

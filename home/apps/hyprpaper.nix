@@ -7,11 +7,11 @@
       # splash_offset = 2.0;
 
       preload = [
-        "~/.dotfiles/walls/dolomites.jpg"
+        "~/.dotfiles/walls/chaffins-dolomites.jpg"
       ];
 
       wallpaper = [
-        ",~/.dotfiles/walls/dolomites.jpg"
+        ",~/.dotfiles/walls/chaffins-dolomites.jpg"
       ];
     };
   };
