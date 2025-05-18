@@ -4,9 +4,6 @@
     enable = true;
     package = null;
     portalPackage = null;
-    extraConfig = ''
-      plugin = ${inputs.hy3.packages.x86_64-linux.hy3}/lib/libhy3.so
-    '';
     settings = {
       source = [
         "~/.config/hypr/modules/variables.conf"
@@ -63,8 +60,8 @@
         rounding = 4;
         blur = {
           enabled = true;
-          size = 12;
-          passes = 3;
+          size = 10;
+          passes = 2;
         };
       };
 
@@ -128,5 +125,50 @@
         disable_scale_checks = true;
       };
     };
+    extraConfig = ''
+      plugin = ${inputs.hy3.packages.x86_64-linux.hy3}/lib/libhy3.so
+      plugin {
+        hy3 {
+          tabs {
+            radius = 4
+            padding = 4
+            text_font = JetBrainsMono Nerd Font
+
+            # active tab bar segment colors
+            col.active = rgba(${config.colorScheme.palette.base03}ee)
+            col.active.border = rgba(${config.colorScheme.palette.base0D}ee)
+            col.active.text = rgba(${config.colorScheme.palette.base05}ee)
+
+            # focused tab bar segment colors (focused node in unfocused container)
+            # col.focused = <color> # default: rgba(60606040)
+            # col.focused.border = <color> # default: rgba(808080ee)
+            # col.focused.text = <color> # default: rgba(ffffffff)
+
+            # inactive tab bar segment colors
+            col.inactive = rgba(${config.colorScheme.palette.base00}ee)
+            col.inactive.border = rgba(${config.colorScheme.palette.base01}ee)
+            col.inactive.text = rgba(${config.colorScheme.palette.base05}ee)
+
+            # urgent tab bar segment colors
+            # col.urgent = <color> # default: rgba(ff223340)
+            # col.urgent.border = <color> # default: rgba(ff2233ee)
+            # col.urgent.text = <color> # default: rgba(ffffffff)
+
+            # urgent tab bar segment colors
+            # col.locked = <color> # default: rgba(90903340)
+            # col.locked.border = <color> # default: rgba(909033ee)
+            # col.locked.text = <color> # default: rgba(ffffffff)
+
+            # if tab backgrounds should be blurred
+            # Blur is only visible when the above colors are not opaque.
+            # blur = <bool> # default: true
+
+            # opacity multiplier for tabs
+            # Applies to blur as well as the given colors.
+            # opacity = <float> # default: 1.0
+          }
+        }
+      }
+    '';
   };
 }

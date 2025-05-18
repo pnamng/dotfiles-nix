@@ -7,11 +7,11 @@
       # splash_offset = 2.0;
 
       preload = [
-        "~/.dotfiles/walls/chaffins-dolomites.jpg"
+        "~/.dotfiles/walls/sequoia-dark.png"
       ];
 
       wallpaper = [
-        ",~/.dotfiles/walls/chaffins-dolomites.jpg"
+        ",~/.dotfiles/walls/sequoia-dark.png"
       ];
     };
   };

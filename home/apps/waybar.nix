@@ -10,9 +10,12 @@
 
       window#waybar {
         background-color: #${config.colorScheme.palette.base00};
+        border: 1px solid #${config.colorScheme.palette.base02};
+        border-radius: 4px;
       }
 
       window#waybar > box {
+        border-radius: 4px;
         padding: 4px;
       }
 
@@ -58,7 +61,7 @@
       }
 
       #battery.warning {
-        color: #${config.colorScheme.palette.base0E};
+        color: #${config.colorScheme.palette.base09};
       }
 
       #battery.critical {
@@ -79,8 +82,8 @@
       }
 
       #clock {
+        background-color: #${config.colorScheme.palette.base02};
         font-weight: bold;
-        border: 1px solid #${config.colorScheme.palette.base05};
         border-radius: 8px;
       }
     '';
@@ -90,10 +93,10 @@
         position = "bottom";
         height = 24;
         spacing = 0;
-        margin-bottom = 0;
+        margin-bottom = 4;
         margin-top = 0;
-        margin-right = 0;
-        margin-left = 0;
+        margin-right = 12;
+        margin-left = 12;
         modules-left = [
           "custom/nix"
           "clock"
