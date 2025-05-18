@@ -1,4 +1,14 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+let
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; })
+    gtkThemeFromScheme
+    ;
+in
 {
   gtk = {
     enable = true;
@@ -7,8 +17,10 @@
       package = pkgs.bibata-cursors;
     };
     theme = {
-      package = pkgs.everforest-gtk-theme;
-      name = "Everforest-Dark-B-LB";
+      name = "${config.colorScheme.slug}";
+      package = gtkThemeFromScheme { scheme = config.colorScheme; };
+      # package = pkgs.everforest-gtk-theme;
+      # name = "Everforest-Dark-B-LB";
     };
     iconTheme = {
       name = "ePapirus";

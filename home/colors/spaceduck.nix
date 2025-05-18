@@ -15,9 +15,9 @@
     base09 = "e39400"; # Integers, Orange
     base0A = "e2b86b"; # Classes, Yellow
     base0B = "8ebd6b"; # Strings, Green
-    base0C = "00a3cc"; # Escape chars, Cyan
-    base0D = "ce6f8f"; # Functions, Blue
-    base0E = "b3a1e6"; # Keywords, Purple
+    base0C = "b3a1e6"; # Cyan, actually purple
+    base0D = "00a3cc"; # Blue, actually cyan
+    base0E = "ce6f8f"; # Purple, actually magenta
     base0F = "BE5046"; # Deprecated, Brown/Red
   };
 }

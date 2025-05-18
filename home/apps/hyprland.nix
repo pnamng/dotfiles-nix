@@ -14,6 +14,10 @@
         "~/.config/hypr/modules/workspaces.conf"
       ];
 
+      # imports = [
+      #   ./workspaces
+      # ];
+
       monitor = [
         "eDP-1,highrr,auto,1.25"
         "DP-1,highrr,auto,1.25"
@@ -132,21 +136,22 @@
           tabs {
             radius = 4
             padding = 4
+            border_width = 3
             text_font = JetBrainsMono Nerd Font
 
             # active tab bar segment colors
-            col.active = rgba(${config.colorScheme.palette.base03}ee)
+            col.active = rgba(${config.colorScheme.palette.base00}ee)
             col.active.border = rgba(${config.colorScheme.palette.base0D}ee)
             col.active.text = rgba(${config.colorScheme.palette.base05}ee)
 
             # focused tab bar segment colors (focused node in unfocused container)
-            # col.focused = <color> # default: rgba(60606040)
-            # col.focused.border = <color> # default: rgba(808080ee)
-            # col.focused.text = <color> # default: rgba(ffffffff)
+            col.focused = rgba(${config.colorScheme.palette.base02}ee)
+            col.focused.border = rgba(${config.colorScheme.palette.base0D}ee)
+            col.focused.text = rgba(${config.colorScheme.palette.base05}ee)
 
             # inactive tab bar segment colors
-            col.inactive = rgba(${config.colorScheme.palette.base00}ee)
-            col.inactive.border = rgba(${config.colorScheme.palette.base01}ee)
+            col.inactive = rgba(${config.colorScheme.palette.base03}ee)
+            col.inactive.border = rgba(${config.colorScheme.palette.base03}ee)
             col.inactive.text = rgba(${config.colorScheme.palette.base05}ee)
 
             # urgent tab bar segment colors

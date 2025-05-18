@@ -4,7 +4,6 @@
     enable = true;
     style = ''
       * {
-        font-family: "Overpass Nerd Font", FontAwesome6Free;
         font-size: 12px;
       }
 
@@ -20,6 +19,7 @@
       }
 
       #workspaces button {
+        font-family: "Overpass Nerd Font", FontAwesome6Free;
         padding: 0 4px;
         margin: 0 2px;
         color: #${config.colorScheme.palette.base0D};
@@ -85,6 +85,10 @@
         background-color: #${config.colorScheme.palette.base02};
         font-weight: bold;
         border-radius: 8px;
+      }
+
+      tooltip {
+        font-family: "JetBrainsMono Nerd Font", FontAwesome6Free;
       }
     '';
     settings = {
