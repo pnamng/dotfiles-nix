@@ -53,25 +53,25 @@
           foreground = "#${config.colorScheme.palette.base05}";
         };
         normal = {
-          black = "#${config.colorScheme.palette.base05}";
-          red = "#${config.colorScheme.palette.base0E}";
-          green = "#${config.colorScheme.palette.base0D}";
+          black = "#${config.colorScheme.palette.base00}";
+          red = "#${config.colorScheme.palette.base08}";
+          green = "#${config.colorScheme.palette.base0B}";
           yellow = "#${config.colorScheme.palette.base0A}";
-          blue = "#${config.colorScheme.palette.base08}";
-          magenta = "#${config.colorScheme.palette.base09}";
-          cyan = "#${config.colorScheme.palette.base0B}";
-          white = "#${config.colorScheme.palette.base03}";
+          blue = "#${config.colorScheme.palette.base0D}";
+          magenta = "#${config.colorScheme.palette.base0E}";
+          cyan = "#${config.colorScheme.palette.base0C}";
+          white = "#${config.colorScheme.palette.base01}";
         };
-        bright = {
-          black = "#${config.colorScheme.palette.base05}";
-          red = "#${config.colorScheme.palette.base0E}";
-          green = "#${config.colorScheme.palette.base0D}";
-          yellow = "#${config.colorScheme.palette.base0A}";
-          blue = "#${config.colorScheme.palette.base08}";
-          magenta = "#${config.colorScheme.palette.base09}";
-          cyan = "#${config.colorScheme.palette.base0B}";
-          white = "#${config.colorScheme.palette.base03}";
-        };
+        # bright = {
+        #   black = "#${config.colorScheme.palette.base05}";
+        #   red = "#${config.colorScheme.palette.base0E}";
+        #   green = "#${config.colorScheme.palette.base0D}";
+        #   yellow = "#${config.colorScheme.palette.base0A}";
+        #   blue = "#${config.colorScheme.palette.base08}";
+        #   magenta = "#${config.colorScheme.palette.base09}";
+        #   cyan = "#${config.colorScheme.palette.base0B}";
+        #   white = "#${config.colorScheme.palette.base03}";
+        # };
       };
     };
   };

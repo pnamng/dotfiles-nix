@@ -12,7 +12,7 @@
     ./apps
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-hard;
+  colorScheme = import ./colors/one-dark-darker.nix;
 
   home.username = "froggo";
   home.homeDirectory = "/home/froggo";
