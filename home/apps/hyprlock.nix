@@ -59,8 +59,8 @@ in
           fade_timeout = 1000;
           placeholder_text = "";
           hide_input = false;
-          check_color = "rgb(204, 136, 34)";
-          fail_color = "rgba(204, 34, 34, 0)";
+          check_color = "rgba(0, 0, 0, 0)";
+          fail_color = "rgba(0, 0, 0 0)";
           fail_text = "";
           fail_transition = 300;
           capslock_color = -1;
@@ -76,18 +76,18 @@ in
       ];
 
       label = [
-        {
-          monitor = "";
-          text = ''cmd[update:1000] echo "🎵 $(playerctl metadata --format \"{{ title }}\")"'';
-          text_align = "center";
-          color = "rgba(200, 200, 200, 1.0)";
-          font_size = 24;
-          font_family = "Overpass Nerd Font";
-          rotate = 0; # degrees, counter-clockwise
-          position = "-80, 60";
-          halign = "right";
-          valign = "bottom";
-        }
+        # {
+        #   monitor = "";
+        #   text = ''cmd[update:1000] echo "<span>🎵 $(playerctl metadata --format \"{{ title }}\")</span>"'';
+        #   text_align = "center";
+        #   color = "rgba(200, 200, 200, 1.0)";
+        #   font_size = 24;
+        #   font_family = "Overpass Nerd Font";
+        #   rotate = 0; # degrees, counter-clockwise
+        #   position = "-80, 60";
+        #   halign = "right";
+        #   valign = "bottom";
+        # }
         {
           monitor = "";
           text = ''cmd[update:1000] echo "<span>$(date +%H:%M)</span>"'';
